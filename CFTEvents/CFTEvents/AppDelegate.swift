@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let settingsVC = SettingsViewController()
         settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
-        settingsVC.title = "Settings" // will be fixed
+        let presenter = SettingsPresenter(view: settingsVC)
+        settingsVC.presenter = presenter
+        
+        settingsVC.title = "Settings" // relocate
         let settingsNC = UINavigationController(rootViewController: settingsVC)
         if #available(iOS 11.0, *) {
             settingsNC.navigationBar.prefersLargeTitles = true

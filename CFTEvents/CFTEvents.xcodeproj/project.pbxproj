@@ -11,6 +11,8 @@
 		3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2C72286A89E00D20C5B /* SettingsCell.swift */; };
 		3A22D2CC2286F0C800D20C5B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */; };
 		3A22D2CF228711DE00D20C5B /* NavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2CE228711DE00D20C5B /* NavBarItems.swift */; };
+		3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */; };
+		3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D2228720A600D20C5B /* SettingsView.swift */; };
 		3A7A8F6D227D865A0023C804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F6C227D865A0023C804 /* AppDelegate.swift */; };
 		3A7A8F74227D865B0023C804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A8F73227D865B0023C804 /* Assets.xcassets */; };
 		3A7A8F77227D865B0023C804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A8F75227D865B0023C804 /* LaunchScreen.storyboard */; };
@@ -23,6 +25,8 @@
 		3A22D2C72286A89E00D20C5B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		3A22D2CE228711DE00D20C5B /* NavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarItems.swift; sourceTree = "<group>"; };
+		3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		3A22D2D2228720A600D20C5B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3A7A8F69227D865A0023C804 /* CFTEvents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFTEvents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7A8F6C227D865A0023C804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A7A8F73227D865B0023C804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				3A22D2C92286A8A400D20C5B /* Cell */,
 				3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */,
 				3A22D2C52286A88C00D20C5B /* SettingsModel.swift */,
+				3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */,
+				3A22D2D2228720A600D20C5B /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -197,6 +203,8 @@
 				3A22D2C62286A88C00D20C5B /* SettingsModel.swift in Sources */,
 				3A7A8F84227DA9550023C804 /* EventsViewController.swift in Sources */,
 				3A7A8F6D227D865A0023C804 /* AppDelegate.swift in Sources */,
+				3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */,
+				3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */,
 				3A7A8F81227DA4D60023C804 /* SettingsViewController.swift in Sources */,
 				3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */,
 				3A22D2CF228711DE00D20C5B /* NavBarItems.swift in Sources */,
