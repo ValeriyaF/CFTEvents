@@ -23,6 +23,8 @@ class EventsPresenter: IEventsPresenter {
     func loadEvents() {
         view?.startLoad()
         model.getData() { data, url in
+            print(data)
+            self.convertDataToEventCellModel(data) // rename, transfer to model
             self.initEvents(with: data)
             DispatchQueue.main.async {
                 self.view?.setEvents()
@@ -33,6 +35,9 @@ class EventsPresenter: IEventsPresenter {
     private func initEvents(with data: Events) {
         self.events = data
     }
-
+    
+    private func convertDataToEventCellModel(_ data: Events) {
+        
+    }
     
 }

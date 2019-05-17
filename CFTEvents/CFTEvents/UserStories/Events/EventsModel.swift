@@ -5,8 +5,21 @@ import UIKit
 typealias Events = [Event]?
 
 struct Event: Codable {
+    let id: Int?
     let title: String?
     let description: String?
+    let cities: [City?]
+    let cardImage: String?
+    let date: Date?
+}
+
+struct City: Codable {
+    let nameEng: String?
+}
+
+struct Date: Codable {
+    let start: String?
+    let end: String?
 }
 
 class EventsModel {

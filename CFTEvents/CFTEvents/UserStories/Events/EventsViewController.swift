@@ -5,13 +5,12 @@ class EventsViewController: UIViewController {
 
     private let tableView = UITableView(frame: .zero)
     private let activityIndicator = UIActivityIndicatorView(frame: .zero) // do not work
-    
-//    private lazy var refreshControl: UIRefreshControl = {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(
-//            self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
-//        return refreshControl
-//    }()
+    lazy private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        return refreshControl
+    }()
     
     private let cellReuseID = "EventsCell"
 
@@ -19,7 +18,6 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         presenter.loadEvents()
-//        configureView()
     }
     
     private func configureView() {
@@ -33,6 +31,7 @@ class EventsViewController: UIViewController {
     
     private func configureTableView() {
         tableView.register(EventCell.self, forCellReuseIdentifier: cellReuseID)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -41,6 +40,9 @@ class EventsViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        
+        tableView.separatorStyle = .none
+        tableView.refreshControl = refreshControl
     }
     
     private func configureNavigationBarItem() {
@@ -53,6 +55,10 @@ class EventsViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.center = self.view.center
     }
+    
+    @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+        presenter.loadEvents()
+    }
 }
 
 extension EventsViewController: IEventsView {
@@ -62,6 +68,7 @@ extension EventsViewController: IEventsView {
     }
     
     func setEvents() {
+        tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
     }
 }
@@ -75,6 +82,10 @@ extension EventsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
         cell.textLabel?.text = "text"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ViewConstants.eventsTableViewHeightForRow
     }
 }
 
