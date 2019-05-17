@@ -2,59 +2,61 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let eventsVC = EventsViewController()
-        eventsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
-        let eventsNC = UINavigationController(rootViewController: eventsVC)
+       let eventsNC = Application.eventsNavigationControllerInitiated(withRootViewController: Application.eventsViewControllerInitiated())
         
+        let settingsNC = Application.settingsNavigationControllerInitiated(withRootViewController: Application.settingsViewControllerInitiated())
         
+        let tabBarController = Application.tabBarControllerInitiated(withControllers: eventsNC, settingsNC)
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
+        return true
+    }
+}
+
+class Application {
+    
+    class func tabBarControllerInitiated(withControllers firstNC: UINavigationController, _ secondNC:
+        UINavigationController) -> UITabBarController {
+        let tabBarController = UITabBarController()
+        let controllers = [firstNC, secondNC]
+        tabBarController.viewControllers = controllers
+        
+        return tabBarController
+    }
+    
+    class func settingsViewControllerInitiated() -> UIViewController {
         let settingsVC = SettingsViewController()
-        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0) // relocate
         let presenter = SettingsPresenter(view: settingsVC)
         settingsVC.presenter = presenter
         
-        settingsVC.title = "Settings" // relocate
-        let settingsNC = UINavigationController(rootViewController: settingsVC)
-        if #available(iOS 11.0, *) {
-            settingsNC.navigationBar.prefersLargeTitles = true
-        }
-        
-        let tabBarController = UITabBarController()
-        let controllers = [settingsNC, eventsNC]
-        tabBarController.viewControllers = controllers
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
-        return true
+        return settingsVC
+    }
+    
+    class func settingsNavigationControllerInitiated(withRootViewController vc: UIViewController) -> UINavigationController {
+        let settingsNC = UINavigationController(rootViewController: vc)
+        return settingsNC
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    class func eventsViewControllerInitiated() -> UIViewController {
+        let eventsVC = EventsViewController()
+        eventsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1) // relocate
+        let presenter = EventsPresenter(model: EventsModel(), view: eventsVC)
+        eventsVC.presenter = presenter
+        return eventsVC
     }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    class func eventsNavigationControllerInitiated(withRootViewController vc: UIViewController) -> UINavigationController {
+        let eventsNC = UINavigationController(rootViewController: vc)
+        return eventsNC
     }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
+    
+    
 }
 

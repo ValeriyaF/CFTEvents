@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A138FFA228ACCC400159962 /* EventsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A138FF9228ACCC400159962 /* EventsAPI.swift */; };
+		3A19EA40228C031D00FAFD45 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA3F228C031D00FAFD45 /* EventCell.swift */; };
+		3A19EA47228C118100FAFD45 /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA46228C118100FAFD45 /* EventsModel.swift */; };
 		3A22D2C62286A88C00D20C5B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2C52286A88C00D20C5B /* SettingsModel.swift */; };
 		3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2C72286A89E00D20C5B /* SettingsCell.swift */; };
 		3A22D2CC2286F0C800D20C5B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */; };
@@ -18,9 +21,14 @@
 		3A7A8F77227D865B0023C804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A8F75227D865B0023C804 /* LaunchScreen.storyboard */; };
 		3A7A8F81227DA4D60023C804 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */; };
 		3A7A8F84227DA9550023C804 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F83227DA9550023C804 /* EventsViewController.swift */; };
+		3AC89540228DC8FF0090A58A /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */; };
+		3AC89545228E88910090A58A /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC89544228E88910090A58A /* EventsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A138FF9228ACCC400159962 /* EventsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAPI.swift; sourceTree = "<group>"; };
+		3A19EA3F228C031D00FAFD45 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		3A19EA46228C118100FAFD45 /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
 		3A22D2C52286A88C00D20C5B /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		3A22D2C72286A89E00D20C5B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -34,6 +42,8 @@
 		3A7A8F78227D865B0023C804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3A7A8F83227DA9550023C804 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
+		3AC89544228E88910090A58A /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A138FF7228ACBBD00159962 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3A138FF8228ACBCA00159962 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3A138FF8228ACBCA00159962 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3A138FF9228ACCC400159962 /* EventsAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3A19EA41228C03E600FAFD45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A22D2C52286A88C00D20C5B /* SettingsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3A22D2C92286A8A400D20C5B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +94,6 @@
 			children = (
 				3A7A8F82227DA9380023C804 /* Events */,
 				3A7A8F7F227DA4AB0023C804 /* Settings */,
-				3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */,
 			);
 			path = UserStories;
 			sourceTree = "<group>";
@@ -68,6 +101,7 @@
 		3A22D2CD228711BD00D20C5B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */,
 				3A22D2CE228711DE00D20C5B /* NavBarItems.swift */,
 			);
 			path = Utils;
@@ -92,6 +126,7 @@
 		3A7A8F6B227D865A0023C804 /* CFTEvents */ = {
 			isa = PBXGroup;
 			children = (
+				3A138FF7228ACBBD00159962 /* Services */,
 				3A22D2CD228711BD00D20C5B /* Utils */,
 				3A22D2CA2286A9D500D20C5B /* UserStories */,
 				3A7A8F6C227D865A0023C804 /* AppDelegate.swift */,
@@ -113,11 +148,11 @@
 		3A7A8F7F227DA4AB0023C804 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3AC89542228DCC710090A58A /* View */,
+				3AC89541228DCC640090A58A /* Presenter */,
+				3A19EA41228C03E600FAFD45 /* Model */,
 				3A22D2C92286A8A400D20C5B /* Cell */,
 				3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */,
-				3A22D2C52286A88C00D20C5B /* SettingsModel.swift */,
-				3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */,
-				3A22D2D2228720A600D20C5B /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -126,8 +161,28 @@
 			isa = PBXGroup;
 			children = (
 				3A7A8F83227DA9550023C804 /* EventsViewController.swift */,
+				3A19EA3F228C031D00FAFD45 /* EventCell.swift */,
+				3A19EA46228C118100FAFD45 /* EventsModel.swift */,
+				3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */,
+				3AC89544228E88910090A58A /* EventsView.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		3AC89541228DCC640090A58A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3AC89542228DCC710090A58A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A22D2D2228720A600D20C5B /* SettingsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,13 +256,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A22D2C62286A88C00D20C5B /* SettingsModel.swift in Sources */,
+				3AC89545228E88910090A58A /* EventsView.swift in Sources */,
 				3A7A8F84227DA9550023C804 /* EventsViewController.swift in Sources */,
 				3A7A8F6D227D865A0023C804 /* AppDelegate.swift in Sources */,
 				3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */,
 				3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */,
+				3AC89540228DC8FF0090A58A /* EventsPresenter.swift in Sources */,
+				3A138FFA228ACCC400159962 /* EventsAPI.swift in Sources */,
 				3A7A8F81227DA4D60023C804 /* SettingsViewController.swift in Sources */,
 				3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */,
+				3A19EA40228C031D00FAFD45 /* EventCell.swift in Sources */,
 				3A22D2CF228711DE00D20C5B /* NavBarItems.swift in Sources */,
+				3A19EA47228C118100FAFD45 /* EventsModel.swift in Sources */,
 				3A22D2CC2286F0C800D20C5B /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

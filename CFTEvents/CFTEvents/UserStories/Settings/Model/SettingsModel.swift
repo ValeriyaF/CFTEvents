@@ -2,12 +2,13 @@ import Foundation
 
 struct SectionData {
     let title: String
-    let rowData: RowType
+    let rowData: RowData
 }
 
-enum RowType {
+enum RowData {
     case theme(allCases: [Theme])
 }
+
 
 extension Theme {
     static let title = "THEME:"
@@ -17,9 +18,10 @@ extension Theme {
             return "Light"
         case .dark:
             return "Dark"
-
         }
     }
 }
+
+
 
 

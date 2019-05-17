@@ -6,9 +6,10 @@ private enum Consts {
 
 class SettingsViewController: UIViewController {
     
+    var presenter: ISettingsPresenter!
+    
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
-    var presenter: ISettingsPresenter!
     private let cellReuseID = "SettingsCell"
 
     override func viewDidLoad() {
@@ -20,11 +21,12 @@ class SettingsViewController: UIViewController {
         view.addSubview(tableView)
         
         configureTableView()
+        configurenavigationBarItem()
     }
     
     private func configureTableView() {
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: cellReuseID) // relocate
-        
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: cellReuseID)
+
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -39,7 +41,6 @@ class SettingsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = NavBarItems.settingsTitle.rawValue // localize
         self.title = NavBarItems.settingsTitle.rawValue
-        
     }
     
 }
@@ -53,7 +54,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOrRows(inSection: section)
+        return presenter.numberOfRows(inSection: section)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -67,11 +68,11 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44 // add consts
+        return 48 // add consts
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 18 // add consts
+        return 22 // add consts
     }
 }
 
