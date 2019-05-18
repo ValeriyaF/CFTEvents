@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 private enum Consts {
 
@@ -30,11 +31,16 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.width.height.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.center.equalTo(self.view)
+        }
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+//        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+//        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
     }
     
     private func configurenavigationBarItem() {

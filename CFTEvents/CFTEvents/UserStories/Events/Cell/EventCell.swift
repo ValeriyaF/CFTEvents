@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class EventCell: UITableViewCell {
     private let cardImageView: UIImageView = {
@@ -17,7 +18,7 @@ class EventCell: UITableViewCell {
     
     private let titleLabel: UILabel = {
         let tLabel = UILabel(frame: .zero)
-        tLabel.backgroundColor = .red
+        tLabel.backgroundColor = .yellow
         tLabel.layer.masksToBounds = true
         return tLabel
     }()
@@ -44,7 +45,8 @@ class EventCell: UITableViewCell {
         addSubview(titleLabel)
         
         configureRoundView()
-        configuredescriptionLabel(with: roundView)
+        configureDescriptionLabel()
+        configureTitleLabel()
     }
     
     private func configureRoundView() {
@@ -59,12 +61,21 @@ class EventCell: UITableViewCell {
         roundView.backgroundColor = .lightGray
     }
     
-    private func configuredescriptionLabel(with parent: UIView) {
+    private func configureDescriptionLabel() {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: parent.topAnchor, constant: ViewConstants.eventCellDescriptionLabel).isActive = true
+        descriptionLabel.leftAnchor.constraint(equalTo: roundView.leftAnchor).isActive = true
+        descriptionLabel.rightAnchor.constraint(equalTo: roundView.rightAnchor).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: roundView.bottomAnchor).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: roundView.topAnchor, constant: ViewConstants.eventCellDescriptionLabel).isActive = true
         descriptionLabel.layer.cornerRadius = ViewConstants.viewCornerRadius
+    }
+    
+    private func configureTitleLabel() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: roundView.topAnchor, constant: 50).isActive = true
+        
+        
     }
 }
