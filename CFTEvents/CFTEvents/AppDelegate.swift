@@ -6,11 +6,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-       let eventsNC = Application.eventsNavigationControllerInitiated(withRootViewController: Application.eventsViewControllerInitiated())
+        let eventsNC = Assembly.eventsNavigationController(withRootViewController: Assembly.eventsViewController())
         
-        let settingsNC = Application.settingsNavigationControllerInitiated(withRootViewController: Application.settingsViewControllerInitiated())
+        let settingsNC = Assembly.settingsNavigationController(withRootViewController: Assembly.settingsViewController())
         
-        let tabBarController = Application.tabBarControllerInitiated(withControllers: eventsNC, settingsNC)
+        let tabBarController = Assembly.tabBarController(withControllers: eventsNC, settingsNC)
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-class Application {
+fileprivate final class Assembly {
     
-    class func tabBarControllerInitiated(withControllers firstNC: UINavigationController, _ secondNC:
+    class func tabBarController(withControllers firstNC: UINavigationController, _ secondNC:
         UINavigationController) -> UITabBarController {
         let tabBarController = UITabBarController()
         let controllers = [firstNC, secondNC]
@@ -30,7 +30,7 @@ class Application {
         return tabBarController
     }
     
-    class func settingsViewControllerInitiated() -> UIViewController {
+    class func settingsViewController() -> UIViewController {
         let settingsVC = SettingsViewController()
         settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0) // relocate
         let presenter = SettingsPresenter(view: settingsVC)
@@ -39,12 +39,12 @@ class Application {
         return settingsVC
     }
     
-    class func settingsNavigationControllerInitiated(withRootViewController vc: UIViewController) -> UINavigationController {
+    class func settingsNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
         let settingsNC = UINavigationController(rootViewController: vc)
         return settingsNC
     }
-
-    class func eventsViewControllerInitiated() -> UIViewController {
+    
+    class func eventsViewController() -> UIViewController {
         let eventsVC = EventsViewController()
         eventsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1) // relocate
         let presenter = EventsPresenter(model: EventsModel(), view: eventsVC)
@@ -52,7 +52,7 @@ class Application {
         return eventsVC
     }
     
-    class func eventsNavigationControllerInitiated(withRootViewController vc: UIViewController) -> UINavigationController {
+    class func eventsNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
         let eventsNC = UINavigationController(rootViewController: vc)
         return eventsNC
     }

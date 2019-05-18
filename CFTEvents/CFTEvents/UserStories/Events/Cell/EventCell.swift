@@ -2,6 +2,8 @@ import UIKit
 import SnapKit
 
 class EventCell: UITableViewCell {
+    private let roundView = UIView(frame: .zero)
+    
     private let cardImageView: UIImageView = {
         let imgView = UIImageView(image: nil)
         imgView.contentMode = .scaleAspectFit
@@ -23,12 +25,24 @@ class EventCell: UITableViewCell {
         return tLabel
     }()
     
-    private let dateLabel = UILabel(frame: .zero)
-    private let cityLabel = UILabel(frame: .zero)
-    private let roundView = UIView(frame: .zero)
+    private let dateLabel: UILabel = {
+        let dLabel = UILabel(frame: .zero)
+        dLabel.backgroundColor = .green
+        dLabel.layer.masksToBounds = true
+        return dLabel
+    }()
+    
+    private let cityLabel: UILabel = {
+        let cLabel = UILabel(frame: .zero)
+        cLabel.backgroundColor = .purple
+        cLabel.layer.masksToBounds = true
+        return cLabel
+    }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         configureSubviews()
     }
     
@@ -38,44 +52,52 @@ class EventCell: UITableViewCell {
     
     private func configureSubviews() {
         addSubview(roundView)
-        addSubview(cardImageView)
-        addSubview(descriptionLabel)
-        addSubview(dateLabel)
-        addSubview(cityLabel)
-        addSubview(titleLabel)
+        roundView.addSubview(cardImageView)
+        roundView.addSubview(descriptionLabel)
+        roundView.addSubview(dateLabel)
+        roundView.addSubview(cityLabel)
+        roundView.addSubview(titleLabel)
         
+//        selectedBackgroundView = roundView 
+
         configureRoundView()
-        configureDescriptionLabel()
-        configureTitleLabel()
+        configureLabels()
+
+        
     }
     
     private func configureRoundView() {
-        roundView.translatesAutoresizingMaskIntoConstraints = false
-        // how to replace magic numbers
-        roundView.widthAnchor.constraint(equalToConstant: 750).isActive = true
-        roundView.heightAnchor.constraint(equalToConstant: 240).isActive = true
-        roundView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        roundView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
+        roundView.snp.makeConstraints { view -> Void in
+            view.width.height.equalTo(self).offset(ViewConstants.cellRoundViewOffset)
+            view.center.equalTo(self)
+        }
+    
         roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
         roundView.backgroundColor = .lightGray
     }
     
-    private func configureDescriptionLabel() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.leftAnchor.constraint(equalTo: roundView.leftAnchor).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: roundView.rightAnchor).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: roundView.bottomAnchor).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: roundView.topAnchor, constant: ViewConstants.eventCellDescriptionLabel).isActive = true
-        descriptionLabel.layer.cornerRadius = ViewConstants.viewCornerRadius
-    }
-    
-    private func configureTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureLabels() {
+        descriptionLabel.snp.makeConstraints { label -> Void in
+            label.bottom.left.right.equalTo(roundView)
+            label.height.equalTo(roundView).offset(ViewConstants.eventCellDescriptionLabel)
+        }
         
-        titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: roundView.topAnchor, constant: 50).isActive = true
+        titleLabel.snp.makeConstraints { label -> Void in
+            label.bottom.equalTo(descriptionLabel.snp.top)
+            label.height.equalTo(descriptionLabel.snp.height)
+            label.width.equalTo(descriptionLabel.snp.width).dividedBy(2)
+        }
         
+        dateLabel.snp.makeConstraints { label -> Void in
+            label.top.equalTo(roundView)
+            label.height.width.equalTo(titleLabel)
+        }
         
+        cityLabel.snp.makeConstraints { label -> Void in
+            label.top.equalTo(roundView)
+            label.right.equalTo(roundView)
+            label.height.width.equalTo(titleLabel)
+        }
     }
 }
+

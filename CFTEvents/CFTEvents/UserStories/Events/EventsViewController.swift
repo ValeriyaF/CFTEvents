@@ -89,5 +89,10 @@ extension EventsViewController: UITableViewDataSource {
     }
 }
 
-extension EventsViewController: UITableViewDelegate {}
+extension EventsViewController: UITableViewDelegate {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Change the selected background view of the cell.
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+}
 

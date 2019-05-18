@@ -31,10 +31,10 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.snp.makeConstraints { (make) -> Void in
-            make.width.height.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.center.equalTo(self.view)
+        tableView.snp.makeConstraints { (tableView) -> Void in
+            tableView.width.height.equalTo(self.view)
+            tableView.height.equalTo(self.view)
+            tableView.center.equalTo(self.view)
         }
 //        tableView.translatesAutoresizingMaskIntoConstraints = false
 //        tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
