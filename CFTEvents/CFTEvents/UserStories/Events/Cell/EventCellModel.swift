@@ -3,12 +3,13 @@ import UIKit
 struct EventCellModel {
     let title: String
     let description: String
-    let date: String
-//    let cities: [City]
+    let startDate: String
+    let cities: String
     
-    init(title: String, description: String, date: String) {
-        self.title = title
-        self.description = description
-        self.date = date
+    init(event: Event) {
+        self.title = event.title ?? ""
+        self.description = event.description ?? ""
+        self.startDate = event.date?.start ?? "" // DateFormatter later
+        self.cities = event.cities?.compactMap { String($0?.nameEng ?? "") }.joined(separator: " ") ?? ""
     }
 }

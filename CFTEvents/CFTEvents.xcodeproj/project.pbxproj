@@ -212,8 +212,8 @@
 		3AD26353228EE45D00440C64 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3A19EA3F228C031D00FAFD45 /* EventCell.swift */,
 				3AD2635A228EFC8200440C64 /* EventCellModel.swift */,
+				3A19EA3F228C031D00FAFD45 /* EventCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

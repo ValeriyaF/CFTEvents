@@ -6,35 +6,36 @@ class EventCell: UITableViewCell {
     
     private let cardImageView: UIImageView = {
         let imgView = UIImageView(image: nil)
-        imgView.contentMode = .scaleAspectFit
-        imgView.clipsToBounds = false
+//        imgView.contentMode = .scaleAspectFit
+//        imgView.clipsToBounds = false
         return imgView
     } ()
     
     private let descriptionLabel: UILabel = {
         let dLabel = UILabel(frame: .zero)
-        dLabel.backgroundColor = .red
+        dLabel.backgroundColor = .clear
         dLabel.layer.masksToBounds = true
         return dLabel
     }()
     
     private let titleLabel: UILabel = {
         let tLabel = UILabel(frame: .zero)
-        tLabel.backgroundColor = .yellow
+        tLabel.backgroundColor = .clear
         tLabel.layer.masksToBounds = true
         return tLabel
     }()
     
-    private let dateLabel: UILabel = {
+    private let startDateLabel: UILabel = {
         let dLabel = UILabel(frame: .zero)
-        dLabel.backgroundColor = .green
+        dLabel.backgroundColor = .clear
         dLabel.layer.masksToBounds = true
         return dLabel
     }()
     
     private let cityLabel: UILabel = {
         let cLabel = UILabel(frame: .zero)
-        cLabel.backgroundColor = .purple
+        cLabel.backgroundColor = .clear
+        cLabel.textAlignment = .right
         cLabel.layer.masksToBounds = true
         return cLabel
     }()
@@ -50,54 +51,68 @@ class EventCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
+    func configureLabels(with model: EventCellModel) {
+        titleLabel.text = model.title
+        descriptionLabel.text = model.description
+        startDateLabel.text = model.startDate
+        cityLabel.text = model.cities
+    }
+    
+    func configureImage(with image: UIImage?) {
+        cardImageView.image = image
+    }
+    
     private func configureSubviews() {
         addSubview(roundView)
         roundView.addSubview(cardImageView)
         roundView.addSubview(descriptionLabel)
-        roundView.addSubview(dateLabel)
+        roundView.addSubview(startDateLabel)
         roundView.addSubview(cityLabel)
         roundView.addSubview(titleLabel)
-        
-//        selectedBackgroundView = roundView 
 
         configureRoundView()
         configureLabels()
-
-        
+        configureImageView()
     }
     
     private func configureRoundView() {
-        roundView.snp.makeConstraints { view -> Void in
-            view.width.height.equalTo(self).offset(ViewConstants.cellRoundViewOffset)
-            view.center.equalTo(self)
+        roundView.snp.makeConstraints { make -> Void in
+            make.width.height.equalTo(self).offset(ViewConstants.cellRoundViewOffset)
+            make.center.equalTo(self)
         }
-    
-        roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
-        roundView.backgroundColor = .lightGray
     }
     
     private func configureLabels() {
-        descriptionLabel.snp.makeConstraints { label -> Void in
-            label.bottom.left.right.equalTo(roundView)
-            label.height.equalTo(roundView).offset(ViewConstants.eventCellDescriptionLabel)
+        descriptionLabel.snp.makeConstraints { make -> Void in
+            make.bottom.left.right.equalTo(roundView)
+            make.height.equalTo(roundView).offset(ViewConstants.eventCellDescriptionLabel)
         }
         
-        titleLabel.snp.makeConstraints { label -> Void in
-            label.bottom.equalTo(descriptionLabel.snp.top)
-            label.height.equalTo(descriptionLabel.snp.height)
-            label.width.equalTo(descriptionLabel.snp.width).dividedBy(2)
+        titleLabel.snp.makeConstraints { make -> Void in
+            make.bottom.equalTo(descriptionLabel.snp.top)
+            make.height.equalTo(descriptionLabel.snp.height)
+            make.width.equalTo(descriptionLabel.snp.width).dividedBy(2)
         }
         
-        dateLabel.snp.makeConstraints { label -> Void in
-            label.top.equalTo(roundView)
-            label.height.width.equalTo(titleLabel)
+        startDateLabel.snp.makeConstraints { make -> Void in
+            make.top.equalTo(roundView)
+            make.height.width.equalTo(titleLabel)
         }
         
-        cityLabel.snp.makeConstraints { label -> Void in
-            label.top.equalTo(roundView)
-            label.right.equalTo(roundView)
-            label.height.width.equalTo(titleLabel)
+        cityLabel.snp.makeConstraints { make -> Void in
+            make.top.equalTo(roundView)
+            make.right.equalTo(roundView)
+            make.width.equalTo(titleLabel)
+            make.height.equalTo(titleLabel)
         }
+    }
+    
+    private func configureImageView() {
+        cardImageView.snp.makeConstraints { make -> Void in
+            make.left.right.top.bottom.equalTo(roundView)
+        }
+        
+        cardImageView.layer.cornerRadius = ViewConstants.viewCornerRadius
     }
 }
 

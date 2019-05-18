@@ -62,6 +62,10 @@ class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: IEventsView {
+    func setCellImage(image: UIImage) {
+        
+    }
+    
     func startLoad() {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
@@ -80,18 +84,26 @@ extension EventsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
-        cell.textLabel?.text = "text"
+        cell.configureLabels(with: presenter.cellModelFor(indexPath: indexPath))
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ViewConstants.eventsTableViewHeightForRow
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? EventCell else {
+            fatalError("FE")
+        }
+        presenter.loadImageFor(indexPath: indexPath)
+        cell.configureImage(with: presenter.currentImage())
+
+    }
 }
 
 extension EventsViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Change the selected background view of the cell.
         tableView.deselectRow(at: indexPath, animated: false)
     }
 }
