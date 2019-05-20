@@ -17,7 +17,7 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        presenter.loadEvents()
+        presenter.updateEventsList()
     }
     
     private func configureView() {
@@ -57,7 +57,7 @@ class EventsViewController: UIViewController {
     }
     
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-        presenter.loadEvents()
+        presenter.updateEventsList()
     }
 }
 
@@ -84,22 +84,14 @@ extension EventsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
-        cell.configureLabels(with: presenter.cellModelFor(indexPath: indexPath))
+        cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row), index: indexPath.row)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ViewConstants.eventsTableViewHeightForRow
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? EventCell else {
-            fatalError("FE")
-        }
-        presenter.loadImageFor(indexPath: indexPath)
-        cell.configureImage(with: presenter.currentImage())
 
-    }
 }
 
 extension EventsViewController: UITableViewDelegate {

@@ -4,10 +4,11 @@ import SnapKit
 class EventCell: UITableViewCell {
     private let roundView = UIView(frame: .zero)
     
+    private let eventsModel = EventsModel() // architecture problem
+    
     private let cardImageView: UIImageView = {
         let imgView = UIImageView(image: nil)
-//        imgView.contentMode = .scaleAspectFit
-//        imgView.clipsToBounds = false
+        imgView.layer.cornerRadius = ViewConstants.viewCornerRadius
         return imgView
     } ()
     
@@ -51,16 +52,22 @@ class EventCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    func configureLabels(with model: EventCellModel) {
+    func configureLabels(with model: EventCellModel, index: Int) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         startDateLabel.text = model.startDate
         cityLabel.text = model.cities
+        
+        eventsModel.getImage(for: index) { (image, url) in
+            DispatchQueue.main.async {
+                self.cardImageView.image = image
+            }
+        }
     }
     
-    func configureImage(with image: UIImage?) {
-        cardImageView.image = image
-    }
+//    func configureImage(with image: UIImage?) {
+//        cardImageView.image = image
+//    }
     
     private func configureSubviews() {
         self.backgroundColor = .lightGray
@@ -81,6 +88,7 @@ class EventCell: UITableViewCell {
             make.width.height.equalTo(self).offset(ViewConstants.cellRoundViewOffset)
             make.center.equalTo(self)
         }
+        roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
     }
     
     private func configureLabels() {

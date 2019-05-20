@@ -35,14 +35,33 @@ struct Date: Codable {
 
 class EventsModel {
     
-    private let cache = NSCache<NSString, UIImage>()
-    private var imageURLs = Array<String>()
+    private let imageCache = NSCache<NSString, UIImage>()
+    private static var imageURLs = Array<String>()
+    private var loadedImage:UIImage?
+    
+    func getData(completion: @escaping (_ data: Response, _ url: URL)->()) {
+        guard let url = URL(string: "https://team.cft.ru/api/v1/Events/registration") else {
+            print("URL problem")
+            return
+        }
+        loadData(withURL: url, completion: completion)
+    }
+    
+    func getImage(for index: Int, completion: @escaping (_ image: UIImage?, _ url: URL) -> () ) {
+        let url = URL(string: "https://team.cft.ru" + EventsModel.imageURLs[index])! // if let
+        if let image = imageCache.object(forKey: url.absoluteString as NSString) {
+            completion(image, url)
+        } else {
+            loadImage(withURL: url, completion: completion)
+        }
+    }
 
     private func loadData(withURL url:URL, completion: @escaping (_ data: Response, _ url: URL)->()) {
 
         let dataTask = URLSession.shared.dataTask(with: url) { (data, responseURL, error) in
             var loadedData: Response?
-            self.cache.removeAllObjects()
+//            self.imageCache.removeAllObjects()
+//            self.loadedImage = nil
 
             if let error = error {
                 print("responseURL = \(error.localizedDescription)")
@@ -58,7 +77,8 @@ class EventsModel {
             }
             
             if let loadedData = loadedData {
-                self.imageURLs = loadedData?.compactMap { String($0.cardImage ?? "") } ?? [""]
+                EventsModel.imageURLs = loadedData?.compactMap { String($0.cardImage ?? "") } ?? [""]
+
             }
             
             DispatchQueue.global(qos: .userInteractive).async {
@@ -70,41 +90,22 @@ class EventsModel {
     
     private func loadImage(withURL url:URL, completion: @escaping (_ image: UIImage?, _ url: URL)->()) {
         let dataTask = URLSession.shared.dataTask(with: url) { (data, responseURL, error) in
-            var loadedImage:UIImage?
             
             if let data = data {
-                loadedImage = UIImage(data: data)
+                self.loadedImage = UIImage(data: data)
             }
             
-            if let loadedImage = loadedImage {
-                self.cache.setObject(loadedImage, forKey: url.absoluteString as NSString)
+            if let loadedImage = self.loadedImage {
+                self.imageCache.setObject(loadedImage, forKey: url.absoluteString as NSString)
             }
             
             DispatchQueue.global(qos: .userInteractive).async {
-                completion(loadedImage, url)
+                completion(self.loadedImage, url)
             }
             
         }
         
         dataTask.resume()
-    }
-
-    func getData(completion: @escaping (_ data: Response, _ url: URL)->()) {
-        guard let url = URL(string: "https://team.cft.ru/api/v1/Events/registration") else {
-            print("URL problem")
-            return
-        }
-        loadData(withURL: url, completion: completion)
-    }
-    
-    func getImage(for indexPath: IndexPath, completion: @escaping (_ image: UIImage?, _ url: URL) -> () ) {
-//        let index = imageURLs[indexPath.row]
-        let url = URL(string: "https://team.cft.ru" + imageURLs[indexPath.row])! // if let
-        if let image = cache.object(forKey: url.absoluteString as NSString) {
-            completion(image, url)
-        } else {
-            loadImage(withURL: url, completion: completion)
-        }
     }
 }
 
