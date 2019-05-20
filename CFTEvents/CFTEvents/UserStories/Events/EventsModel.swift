@@ -2,36 +2,36 @@ import UIKit
 
 // network layer in progress
 
-typealias Response = [Event]?
-
-struct Event: Codable {
-    let id: Int?
-    let title: String?
-    let description: String?
-    let cities: [City?]?
-    let cardImage: String?
-    let date: Date?
-    
-    init(id: Int? = nil, title: String? = nil, description: String? = nil,
-         cities: [City?]? = nil, cardImage: String? = nil, date: Date? = nil) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.cities = cities
-        self.cardImage = cardImage
-        self.date = date
-    }
-
-}
-
-struct City: Codable {
-    let nameEng: String?
-}
-
-struct Date: Codable {
-    let start: String?
-    let end: String?
-}
+//typealias Response = [Event]?
+//
+//struct Event: Codable {
+//    let id: Int?
+//    let title: String?
+//    let description: String?
+//    let cities: [City?]?
+//    let cardImage: String?
+//    let date: Date?
+//    
+//    init(id: Int? = nil, title: String? = nil, description: String? = nil,
+//         cities: [City?]? = nil, cardImage: String? = nil, date: Date? = nil) {
+//        self.id = id
+//        self.title = title
+//        self.description = description
+//        self.cities = cities
+//        self.cardImage = cardImage
+//        self.date = date
+//    }
+//
+//}
+//
+//struct City: Codable {
+//    let nameEng: String?
+//}
+//
+//struct Date: Codable {
+//    let start: String?
+//    let end: String?
+//}
 
 class EventsModel {
     
@@ -39,7 +39,7 @@ class EventsModel {
     private static var imageURLs = Array<String>()
     private var loadedImage:UIImage?
     
-    func getData(completion: @escaping (_ data: Response, _ url: URL)->()) {
+    func getData(completion: @escaping (_ data: EventApiResponse, _ url: URL)->()) {
         guard let url = URL(string: "https://team.cft.ru/api/v1/Events/registration") else {
             print("URL problem")
             return
@@ -56,12 +56,10 @@ class EventsModel {
         }
     }
 
-    private func loadData(withURL url:URL, completion: @escaping (_ data: Response, _ url: URL)->()) {
+    private func loadData(withURL url:URL, completion: @escaping (_ data: EventApiResponse, _ url: URL)->()) {
 
         let dataTask = URLSession.shared.dataTask(with: url) { (data, responseURL, error) in
-            var loadedData: Response?
-//            self.imageCache.removeAllObjects()
-//            self.loadedImage = nil
+            var loadedData: EventApiResponse?
 
             if let error = error {
                 print("responseURL = \(error.localizedDescription)")
@@ -70,7 +68,7 @@ class EventsModel {
 
             if let data = data {
                 do {
-                    loadedData = try JSONDecoder().decode(Response.self, from: data)
+                    loadedData = try JSONDecoder().decode(EventApiResponse.self, from: data)
                 } catch let err {
                     print("Err", err)
                 }

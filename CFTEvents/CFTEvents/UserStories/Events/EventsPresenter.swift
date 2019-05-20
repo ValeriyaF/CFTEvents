@@ -12,7 +12,7 @@ class EventsPresenter: IEventsPresenter {
     let model: EventsModel
     private weak var view: IEventsView?
     
-    private var eventsList: Response = []
+    private var eventsList: EventApiResponse = []
     private var image: UIImage?
     
     init(model: EventsModel, view: IEventsView) {
@@ -51,7 +51,7 @@ class EventsPresenter: IEventsPresenter {
         }
     }
     
-    private func initEventsList(with data: Response) {
+    private func initEventsList(with data: EventApiResponse) {
         self.eventsList = data
     }
     
