@@ -31,7 +31,7 @@ class EventsPresenter: IEventsPresenter {
     }
     
     func loadImageFor(indexPath: IndexPath) {
-        model.getImage(indexPath: indexPath) { image, url in
+        model.getImage(for: indexPath) { image, url in
             self.initImage(with: image ?? nil)
         }
     }

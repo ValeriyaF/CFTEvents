@@ -76,8 +76,8 @@ class EventsModel {
                 loadedImage = UIImage(data: data)
             }
             
-            if loadedImage != nil {
-                self.cache.setObject(loadedImage!, forKey: url.absoluteString as NSString)
+            if let loadedImage = loadedImage {
+                self.cache.setObject(loadedImage, forKey: url.absoluteString as NSString)
             }
             
             DispatchQueue.global(qos: .userInteractive).async {
@@ -97,8 +97,9 @@ class EventsModel {
         loadData(withURL: url, completion: completion)
     }
     
-    func getImage(indexPath indexPath: IndexPath, completion: @escaping (_ image: UIImage?, _ url: URL) -> () ) {
-        let url = URL(string: "https://team.cft.ru" + imageURLs[indexPath.row])! // if let 
+    func getImage(for indexPath: IndexPath, completion: @escaping (_ image: UIImage?, _ url: URL) -> () ) {
+//        let index = imageURLs[indexPath.row]
+        let url = URL(string: "https://team.cft.ru" + imageURLs[indexPath.row])! // if let
         if let image = cache.object(forKey: url.absoluteString as NSString) {
             completion(image, url)
         } else {

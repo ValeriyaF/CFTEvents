@@ -63,6 +63,7 @@ class EventCell: UITableViewCell {
     }
     
     private func configureSubviews() {
+        self.backgroundColor = .lightGray
         addSubview(roundView)
         roundView.addSubview(cardImageView)
         roundView.addSubview(descriptionLabel)
