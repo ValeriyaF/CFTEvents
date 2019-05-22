@@ -2,11 +2,12 @@ import Foundation
 
 enum EventApi {
     case events
+    case image
 }
 
 extension EventApi: EndPointType {
     var baseURL: URL {
-        guard let url = URL(string: "https://team.cft.ru/api/v1/") else {
+        guard let url = URL(string: "https://team.cft.ru/") else {
             fatalError("baseURL could not be configured.")
         }
         return url
@@ -15,7 +16,9 @@ extension EventApi: EndPointType {
     var path: String {
         switch self {
         case .events:
-            return "Events/registration"
+            return "api/v1/Events/registration"
+        case .image:
+            return ""
         }
     }
     

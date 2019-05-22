@@ -1,6 +1,7 @@
 import UIKit
 
 protocol IEventsPresenter {
+    func dataToShare(forRowAt index: Int) -> DataToShare // rename
     func numberOfRows() -> Int
     func cellModel(forRowAt index: Int) -> EventCellModel
     func cellImage(forRowAt index: Int) -> UIImage?
@@ -8,25 +9,25 @@ protocol IEventsPresenter {
 }
 
 class EventsPresenter: IEventsPresenter {
-
-    let model: EventsModel
+    let model: EventsService
     private weak var view: IEventsView?
     
-    private var eventsList: EventApiResponse = []
+    private var eventsList: [EventCellModel] = []
+    
     private var image: UIImage?
     
-    init(model: EventsModel, view: IEventsView) {
+    init(model: EventsService, view: IEventsView) {
         self.model = model
         self.view = view
     }
 
     func numberOfRows() -> Int {
-        print("count of events = \(eventsList?.count ?? -1)")
-        return eventsList?.count ?? 0
+        print("count of events = \(eventsList.count)")
+        return eventsList.count
     }
     
     func cellModel(forRowAt index: Int) -> EventCellModel {
-        return EventCellModel(event: eventsList?[index] ?? Event())
+        return eventsList[index]
     }
     
     func updateEventsList() {
@@ -34,25 +35,33 @@ class EventsPresenter: IEventsPresenter {
     }
     
     func cellImage(forRowAt index: Int) -> UIImage? {
-        model.getImage(for: index) { (image, url) in
-            self.initImage(with: image ?? nil)
+        model.getImage(for: index) { [weak self](image, url) in
+            self?.initImage(with: image ?? nil)
         }
         return self.image
     }
     
+    func dataToShare(forRowAt index: Int) -> DataToShare {
+        return DataToShare(id: eventsList[index].id, title: eventsList[index].title)
+    }
     
     private func getEvents() {
         view?.startLoad()
-        model.getData() { data, url in
-            self.initEventsList(with: data)
+        model.getData() { data in
+            if let data = data {
+                self.initEventsList(with: data)
+            }
             DispatchQueue.main.async {
                 self.view?.setEvents()
             }
         }
     }
     
-    private func initEventsList(with data: EventApiResponse) {
-        self.eventsList = data
+    private func initEventsList(with data: EventsApiResponse) {
+            let newData = data?.compactMap { elenent in
+            EventCellModel(event: elenent)
+        }
+        self.eventsList = newData ?? []
     }
     
     private func initImage(with image: UIImage?) {

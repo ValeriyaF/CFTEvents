@@ -10,18 +10,18 @@ enum NetworkResponse: String {
     case unableToDecode = "We could not decode the response."
 }
 
-enum Result<String>{
+enum Result<String> {
     case success
     case failure(String)
 }
 
 struct NetworkManager {
-    static let token = "cftte@mtest20!9"
+    static let token = ""
     let router = Router<EventApi>()
     
-    func getEvents(completion: @escaping (_ events: EventApiResponse, _ error: String?) -> ()) {
+    func getEvents(completion: @escaping (_ events: EventsApiResponse, _ error: String?) -> ()) {
         router.request(.events) { (data, response, error) in
-            if error != nil { //TODO: if let
+            if error != nil { // if let
                 completion(nil, "Please check your network connection.")
             }
             
@@ -34,7 +34,7 @@ struct NetworkManager {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(EventApiResponse.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(EventsApiResponse.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         print(error)
@@ -47,6 +47,10 @@ struct NetworkManager {
                 
             }
         }
+    }
+    
+    func getImege(from urlPath: String, completion: @escaping (_ events: EventsApiResponse, _ error: String?) -> ()) {
+//        router.request(<#T##route: EventApi##EventApi#>, completion: <#T##NetworkRouterCompletion##NetworkRouterCompletion##(Data?, URLResponse?, Error?) -> ()#>)
     }
     
     private func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {

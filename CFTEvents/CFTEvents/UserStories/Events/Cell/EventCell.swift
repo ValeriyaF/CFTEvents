@@ -4,8 +4,6 @@ import SnapKit
 class EventCell: UITableViewCell {
     private let roundView = UIView(frame: .zero)
     
-    private let eventsModel = EventsModel() // architecture problem
-    
     private let cardImageView: UIImageView = {
         let imgView = UIImageView(image: nil)
         imgView.layer.cornerRadius = ViewConstants.viewCornerRadius
@@ -44,8 +42,7 @@ class EventCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        configureSubviews()
+        configureSubviews() // TODO: add shadow
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,11 +55,15 @@ class EventCell: UITableViewCell {
         startDateLabel.text = model.startDate
         cityLabel.text = model.cities
         
-        eventsModel.getImage(for: index) { (image, url) in
-            DispatchQueue.main.async {
-                self.cardImageView.image = image
-            }
-        }
+//        eventsModel.getImage(for: index) { (image, url) in
+//            DispatchQueue.main.async {
+//                self.cardImageView.image = image
+//            }
+//        }
+    }
+    
+    func configureImage(with image: UIImage?) {
+        cardImageView.image = image
     }
     
 //    func configureImage(with image: UIImage?) {
@@ -70,7 +71,7 @@ class EventCell: UITableViewCell {
 //    }
     
     private func configureSubviews() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .white
         addSubview(roundView)
         roundView.addSubview(cardImageView)
         roundView.addSubview(descriptionLabel)
@@ -96,6 +97,8 @@ class EventCell: UITableViewCell {
             make.bottom.left.right.equalTo(roundView)
             make.height.equalTo(roundView).offset(ViewConstants.eventCellDescriptionLabel)
         }
+        
+        descriptionLabel.layer.cornerRadius = ViewConstants.viewCornerRadius
         
         titleLabel.snp.makeConstraints { make -> Void in
             make.bottom.equalTo(descriptionLabel.snp.top)

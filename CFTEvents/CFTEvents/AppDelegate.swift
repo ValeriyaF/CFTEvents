@@ -8,6 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let eventsNC = Assembly.eventsNavigationController(withRootViewController: Assembly.eventsViewController())
         
+        let eventMembersNC = Assembly.eventMembersNavigationController(withRootViewController: Assembly.eventsViewController())
+        
         let settingsNC = Assembly.settingsNavigationController(withRootViewController: Assembly.settingsViewController())
         
         let tabBarController = Assembly.tabBarController(withControllers: eventsNC, settingsNC)
@@ -44,10 +46,20 @@ fileprivate final class Assembly {
         return settingsNC
     }
     
+    class func eventMembersViewController() -> UIViewController {
+        let eventMembersVC = EventMembersViewController()
+        return eventMembersVC
+    }
+    
+    class func eventMembersNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
+        let eventMembersNC = UINavigationController(rootViewController: vc)
+        return eventMembersNC
+    }
+    
     class func eventsViewController() -> UIViewController {
         let eventsVC = EventsViewController()
         eventsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1) // relocate
-        let presenter = EventsPresenter(model: EventsModel(), view: eventsVC)
+        let presenter = EventsPresenter(model: EventsService(networkManager: NetworkManager()), view: eventsVC)
         eventsVC.presenter = presenter
         return eventsVC
     }

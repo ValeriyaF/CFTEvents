@@ -3,18 +3,20 @@ import Foundation
 public typealias NetworkRouterCompletion = (_ data: Data?,_ response: URLResponse?,_ error: Error?)->()
 
 class Router<EndPoint: EndPointType> {
-    private var task: URLSessionTask?
+    private var dataTask: URLSessionTask?
     
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         do {
             let request = try self.buildRequest(from: route)
-            task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                completion(data, response, error)
+            dataTask = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                DispatchQueue.global(qos: .userInteractive).async {
+                    completion(data, response, error)
+                }
             })
         } catch {
             completion(nil, nil, error)
         }
-        self.task?.resume()
+        self.dataTask?.resume()
     }
     
     private func buildRequest(from route: EndPoint) throws -> URLRequest {

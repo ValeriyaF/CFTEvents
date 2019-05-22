@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A19EA40228C031D00FAFD45 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA3F228C031D00FAFD45 /* EventCell.swift */; };
-		3A19EA47228C118100FAFD45 /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA46228C118100FAFD45 /* EventsModel.swift */; };
+		3A19EA47228C118100FAFD45 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA46228C118100FAFD45 /* EventsService.swift */; };
 		3A22D2C62286A88C00D20C5B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2C52286A88C00D20C5B /* SettingsModel.swift */; };
 		3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2C72286A89E00D20C5B /* SettingsCell.swift */; };
 		3A22D2CC2286F0C800D20C5B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */; };
@@ -22,7 +22,7 @@
 		3A77EEDF22932CFF004C65C8 /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEDE22932CFF004C65C8 /* URLParameterEncoding.swift */; };
 		3A77EEE122932D1C004C65C8 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEE022932D1C004C65C8 /* JSONParameterEncoder.swift */; };
 		3A77EEE322932DD6004C65C8 /* EventEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEE222932DD6004C65C8 /* EventEndPoint.swift */; };
-		3A77EEE622932E61004C65C8 /* EventApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEE522932E61004C65C8 /* EventApiResponse.swift */; };
+		3A77EEE622932E61004C65C8 /* EventsApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEE522932E61004C65C8 /* EventsApiResponse.swift */; };
 		3A77EEE822933026004C65C8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEE722933026004C65C8 /* Router.swift */; };
 		3A77EEEB229335EB004C65C8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EEEA229335EB004C65C8 /* NetworkManager.swift */; };
 		3A7A8F6D227D865A0023C804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F6C227D865A0023C804 /* AppDelegate.swift */; };
@@ -30,6 +30,13 @@
 		3A7A8F77227D865B0023C804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7A8F75227D865B0023C804 /* LaunchScreen.storyboard */; };
 		3A7A8F81227DA4D60023C804 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */; };
 		3A7A8F84227DA9550023C804 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8F83227DA9550023C804 /* EventsViewController.swift */; };
+		3AB2E32D22954B0A0040C84A /* EventMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E32C22954B0A0040C84A /* EventMembersViewController.swift */; };
+		3AB2E32F22955E460040C84A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E32E22955E460040C84A /* AppConfig.swift */; };
+		3AB2E335229565170040C84A /* EventMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E334229565170040C84A /* EventMemberCell.swift */; };
+		3AB2E3372295700E0040C84A /* EventMemberCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E3362295700E0040C84A /* EventMemberCellModel.swift */; };
+		3AB2E339229572BC0040C84A /* EventMembersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E338229572BC0040C84A /* EventMembersPresenter.swift */; };
+		3AB2E33D229573790040C84A /* EventMembersApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E33C229573790040C84A /* EventMembersApiResponse.swift */; };
+		3AB2E33F22958F850040C84A /* EventMembersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E33E22958F850040C84A /* EventMembersService.swift */; };
 		3AC89540228DC8FF0090A58A /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */; };
 		3AC89545228E88910090A58A /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC89544228E88910090A58A /* EventsView.swift */; };
 		3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD26358228EF97C00440C64 /* ViewConstants.swift */; };
@@ -54,7 +61,7 @@
 
 /* Begin PBXFileReference section */
 		3A19EA3F228C031D00FAFD45 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		3A19EA46228C118100FAFD45 /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
+		3A19EA46228C118100FAFD45 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		3A22D2C52286A88C00D20C5B /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		3A22D2C72286A89E00D20C5B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -68,7 +75,7 @@
 		3A77EEDE22932CFF004C65C8 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		3A77EEE022932D1C004C65C8 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		3A77EEE222932DD6004C65C8 /* EventEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEndPoint.swift; sourceTree = "<group>"; };
-		3A77EEE522932E61004C65C8 /* EventApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventApiResponse.swift; sourceTree = "<group>"; };
+		3A77EEE522932E61004C65C8 /* EventsApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApiResponse.swift; sourceTree = "<group>"; };
 		3A77EEE722933026004C65C8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3A77EEEA229335EB004C65C8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3A7A8F69227D865A0023C804 /* CFTEvents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFTEvents.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +85,13 @@
 		3A7A8F78227D865B0023C804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A7A8F80227DA4D60023C804 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3A7A8F83227DA9550023C804 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		3AB2E32C22954B0A0040C84A /* EventMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersViewController.swift; sourceTree = "<group>"; };
+		3AB2E32E22955E460040C84A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		3AB2E334229565170040C84A /* EventMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMemberCell.swift; sourceTree = "<group>"; };
+		3AB2E3362295700E0040C84A /* EventMemberCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMemberCellModel.swift; sourceTree = "<group>"; };
+		3AB2E338229572BC0040C84A /* EventMembersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersPresenter.swift; sourceTree = "<group>"; };
+		3AB2E33C229573790040C84A /* EventMembersApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersApiResponse.swift; sourceTree = "<group>"; };
+		3AB2E33E22958F850040C84A /* EventMembersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersService.swift; sourceTree = "<group>"; };
 		3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
 		3AC89544228E88910090A58A /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		3AD26358228EF97C00440C64 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
@@ -116,6 +130,7 @@
 		3A22D2CA2286A9D500D20C5B /* UserStories */ = {
 			isa = PBXGroup;
 			children = (
+				3AB2E32B229549A60040C84A /* EventMembers */,
 				3A7A8F82227DA9380023C804 /* Events */,
 				3A7A8F7F227DA4AB0023C804 /* Settings */,
 			);
@@ -128,6 +143,7 @@
 				3A22D2CB2286F0C800D20C5B /* ThemeManager.swift */,
 				3A22D2CE228711DE00D20C5B /* NavBarItems.swift */,
 				3AD26358228EF97C00440C64 /* ViewConstants.swift */,
+				3AB2E32E22955E460040C84A /* AppConfig.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -136,19 +152,21 @@
 			isa = PBXGroup;
 			children = (
 				3A77EEEA229335EB004C65C8 /* NetworkManager.swift */,
+				3A77EEE422932E1B004C65C8 /* NetworkModels */,
+				3A77EEEE22933B9E004C65C8 /* Router */,
+				3A77EEEC22933B78004C65C8 /* EndPoint */,
 				3A77EEE9229330AF004C65C8 /* Service */,
-				3A77EEE222932DD6004C65C8 /* EventEndPoint.swift */,
-				3A77EEE722933026004C65C8 /* Router.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		3A77EEE422932E1B004C65C8 /* NetworkModel */ = {
+		3A77EEE422932E1B004C65C8 /* NetworkModels */ = {
 			isa = PBXGroup;
 			children = (
-				3A77EEE522932E61004C65C8 /* EventApiResponse.swift */,
+				3A77EEE522932E61004C65C8 /* EventsApiResponse.swift */,
+				3AB2E33C229573790040C84A /* EventMembersApiResponse.swift */,
 			);
-			path = NetworkModel;
+			path = NetworkModels;
 			sourceTree = "<group>";
 		};
 		3A77EEE9229330AF004C65C8 /* Service */ = {
@@ -162,6 +180,22 @@
 				3A77EED522932BB7004C65C8 /* EndPointType.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		3A77EEEC22933B78004C65C8 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				3A77EEE222932DD6004C65C8 /* EventEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		3A77EEEE22933B9E004C65C8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3A77EEE722933026004C65C8 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		3A7A8F60227D865A0023C804 = {
@@ -184,7 +218,6 @@
 		3A7A8F6B227D865A0023C804 /* CFTEvents */ = {
 			isa = PBXGroup;
 			children = (
-				3A77EEE422932E1B004C65C8 /* NetworkModel */,
 				3A77EED422932B4F004C65C8 /* Network */,
 				3A22D2CD228711BD00D20C5B /* Utils */,
 				3A22D2CA2286A9D500D20C5B /* UserStories */,
@@ -219,13 +252,73 @@
 		3A7A8F82227DA9380023C804 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				3AB2E332229563B40040C84A /* View */,
+				3AB2E330229563940040C84A /* Presenter */,
+				3AB2E331229563A90040C84A /* Model */,
 				3AD26353228EE45D00440C64 /* Cell */,
 				3A7A8F83227DA9550023C804 /* EventsViewController.swift */,
-				3A19EA46228C118100FAFD45 /* EventsModel.swift */,
-				3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */,
-				3AC89544228E88910090A58A /* EventsView.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		3AB2E32B229549A60040C84A /* EventMembers */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2E33B229572D00040C84A /* Model */,
+				3AB2E33A229572C80040C84A /* Presenter */,
+				3AB2E333229564EA0040C84A /* Cell */,
+				3AB2E32C22954B0A0040C84A /* EventMembersViewController.swift */,
+			);
+			path = EventMembers;
+			sourceTree = "<group>";
+		};
+		3AB2E330229563940040C84A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3AB2E331229563A90040C84A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A19EA46228C118100FAFD45 /* EventsService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3AB2E332229563B40040C84A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3AC89544228E88910090A58A /* EventsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3AB2E333229564EA0040C84A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2E334229565170040C84A /* EventMemberCell.swift */,
+				3AB2E3362295700E0040C84A /* EventMemberCellModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3AB2E33A229572C80040C84A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2E338229572BC0040C84A /* EventMembersPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3AB2E33B229572D00040C84A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2E33E22958F850040C84A /* EventMembersService.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3AC89541228DCC640090A58A /* Presenter */ = {
@@ -326,18 +419,23 @@
 			files = (
 				3A77EED622932BB7004C65C8 /* EndPointType.swift in Sources */,
 				3A77EEE322932DD6004C65C8 /* EventEndPoint.swift in Sources */,
+				3AB2E32D22954B0A0040C84A /* EventMembersViewController.swift in Sources */,
+				3AB2E32F22955E460040C84A /* AppConfig.swift in Sources */,
+				3AB2E33D229573790040C84A /* EventMembersApiResponse.swift in Sources */,
 				3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */,
-				3A77EEE622932E61004C65C8 /* EventApiResponse.swift in Sources */,
+				3A77EEE622932E61004C65C8 /* EventsApiResponse.swift in Sources */,
 				3A22D2C62286A88C00D20C5B /* SettingsModel.swift in Sources */,
 				3AD2635B228EFC8200440C64 /* EventCellModel.swift in Sources */,
 				3A77EEDF22932CFF004C65C8 /* URLParameterEncoding.swift in Sources */,
 				3A77EEE122932D1C004C65C8 /* JSONParameterEncoder.swift in Sources */,
 				3AC89545228E88910090A58A /* EventsView.swift in Sources */,
+				3AB2E339229572BC0040C84A /* EventMembersPresenter.swift in Sources */,
 				3A7A8F84227DA9550023C804 /* EventsViewController.swift in Sources */,
 				3A7A8F6D227D865A0023C804 /* AppDelegate.swift in Sources */,
 				3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */,
 				3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */,
 				3AC89540228DC8FF0090A58A /* EventsPresenter.swift in Sources */,
+				3AB2E33F22958F850040C84A /* EventMembersService.swift in Sources */,
 				3A7A8F81227DA4D60023C804 /* SettingsViewController.swift in Sources */,
 				3A22D2C82286A89E00D20C5B /* SettingsCell.swift in Sources */,
 				3A77EEE822933026004C65C8 /* Router.swift in Sources */,
@@ -347,7 +445,9 @@
 				3A19EA40228C031D00FAFD45 /* EventCell.swift in Sources */,
 				3A22D2CF228711DE00D20C5B /* NavBarItems.swift in Sources */,
 				3A77EEEB229335EB004C65C8 /* NetworkManager.swift in Sources */,
-				3A19EA47228C118100FAFD45 /* EventsModel.swift in Sources */,
+				3A19EA47228C118100FAFD45 /* EventsService.swift in Sources */,
+				3AB2E3372295700E0040C84A /* EventMemberCellModel.swift in Sources */,
+				3AB2E335229565170040C84A /* EventMemberCell.swift in Sources */,
 				3A22D2CC2286F0C800D20C5B /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +576,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -538,7 +639,7 @@
 				3A7A8F7A227D865B0023C804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3A7A8F7B227D865B0023C804 /* Build configuration list for PBXNativeTarget "CFTEvents" */ = {
 			isa = XCConfigurationList;
@@ -547,7 +648,7 @@
 				3A7A8F7D227D865B0023C804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

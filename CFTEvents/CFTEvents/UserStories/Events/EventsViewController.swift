@@ -4,7 +4,7 @@ class EventsViewController: UIViewController {
     var presenter: IEventsPresenter!
 
     private let tableView = UITableView(frame: .zero)
-    private let activityIndicator = UIActivityIndicatorView(frame: .zero) // do not work
+    private let activityIndicator = UIActivityIndicatorView(frame: .zero)
     lazy private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
@@ -35,11 +35,9 @@ class EventsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalTo(self.view)
+        }
         
         tableView.separatorStyle = .none
         tableView.refreshControl = refreshControl
@@ -52,8 +50,14 @@ class EventsViewController: UIViewController {
     }
     
     private func configureActivityIndicator() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.snp.makeConstraints { make -> Void in
+            make.bottom.top.equalTo(tableView)
+            make.height.equalTo(tableView)
+            make.width.equalTo(tableView)
+        }
+        
         activityIndicator.center = self.view.center
+        activityIndicator.color = .red
     }
     
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -74,6 +78,7 @@ extension EventsViewController: IEventsView {
     func setEvents() {
         tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
 }
 
@@ -85,6 +90,7 @@ extension EventsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
         cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row), index: indexPath.row)
+        cell.configureImage(with: presenter.cellImage(forRowAt: indexPath.row))
         return cell
     }
     
@@ -97,6 +103,10 @@ extension EventsViewController: UITableViewDataSource {
 extension EventsViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        // right way to push data ???
+        let vc = EventMembersViewController()
+        vc.dataToShare = presenter.dataToShare(forRowAt: indexPath.row)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

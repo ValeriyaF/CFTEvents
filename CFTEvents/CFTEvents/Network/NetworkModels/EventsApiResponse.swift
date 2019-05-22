@@ -1,6 +1,6 @@
 import Foundation
 
-typealias EventApiResponse = [Event]?
+typealias EventsApiResponse = [Event]?
 
 struct Event: Codable {
     let id: Int?
