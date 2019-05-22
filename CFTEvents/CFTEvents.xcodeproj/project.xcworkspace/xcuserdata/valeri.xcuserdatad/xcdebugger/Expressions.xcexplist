@@ -19,6 +19,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "EventMembersViewController.viewDidLoad():EventMembersViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "presenter">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "EventsModel.getEventsList():EventsModel.swift">
          <PersistentStrings>
             <PersistentString
@@ -117,6 +125,14 @@
          <PersistentStrings>
             <PersistentString
                value = "cache">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in EventMembersPresenter.getMembersList():EventMembersPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "membersList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

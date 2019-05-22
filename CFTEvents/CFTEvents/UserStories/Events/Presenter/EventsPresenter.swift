@@ -1,15 +1,17 @@
 import UIKit
 
 protocol IEventsPresenter {
-    func dataToShare(forRowAt index: Int) -> DataToShare // rename
     func numberOfRows() -> Int
     func cellModel(forRowAt index: Int) -> EventCellModel
     func cellImage(forRowAt index: Int) -> UIImage?
     func updateEventsList()
+    func didSelectedTableViewCell(index: Int)
 }
 
 class EventsPresenter: IEventsPresenter {
-    let model: EventsService
+
+    
+    private let model: EventsService
     private weak var view: IEventsView?
     
     private var eventsList: [EventCellModel] = []
@@ -41,18 +43,19 @@ class EventsPresenter: IEventsPresenter {
         return self.image
     }
     
-    func dataToShare(forRowAt index: Int) -> DataToShare {
-        return DataToShare(id: eventsList[index].id, title: eventsList[index].title)
+    func didSelectedTableViewCell(index: Int) {
+        view?.pushToEventMembersViewController(withSharedData:
+            DataToShare(id: eventsList[index].id, title: eventsList[index].title))
     }
     
     private func getEvents() {
         view?.startLoad()
-        model.getData() { data in
+        model.getData() { [weak self] data in
             if let data = data {
-                self.initEventsList(with: data)
+                self?.initEventsList(with: data)
             }
             DispatchQueue.main.async {
-                self.view?.setEvents()
+                self?.view?.setEvents()
             }
         }
     }
@@ -61,7 +64,7 @@ class EventsPresenter: IEventsPresenter {
             let newData = data?.compactMap { elenent in
             EventCellModel(event: elenent)
         }
-        self.eventsList = newData ?? []
+        self.eventsList = data?.compactMap { EventCellModel(event: $0) } ?? []
     }
     
     private func initImage(with image: UIImage?) {

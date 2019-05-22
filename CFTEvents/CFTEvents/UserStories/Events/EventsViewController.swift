@@ -66,10 +66,6 @@ class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: IEventsView {
-    func setCellImage(image: UIImage) {
-        
-    }
-    
     func startLoad() {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
@@ -79,6 +75,12 @@ extension EventsViewController: IEventsView {
         tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
         activityIndicator.stopAnimating()
+    }
+    
+    func pushToEventMembersViewController(withSharedData data: DataToShare) {
+        let eventsMembersVC = Assembly.eventMembersViewController()
+        eventsMembersVC.dataToShare = data
+        navigationController?.pushViewController(eventsMembersVC, animated: true)
     }
 }
 
@@ -103,10 +105,11 @@ extension EventsViewController: UITableViewDataSource {
 extension EventsViewController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        presenter.didSelectedTableViewCell(index: indexPath.row)
         // right way to push data ???
-        let vc = EventMembersViewController()
-        vc.dataToShare = presenter.dataToShare(forRowAt: indexPath.row)
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = EventMembersViewController()
+//        vc.dataToShare = presenter.dataToShare(forRowAt: indexPath.row)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

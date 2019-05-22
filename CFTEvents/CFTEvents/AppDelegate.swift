@@ -8,8 +8,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let eventsNC = Assembly.eventsNavigationController(withRootViewController: Assembly.eventsViewController())
         
-        let eventMembersNC = Assembly.eventMembersNavigationController(withRootViewController: Assembly.eventsViewController())
-        
         let settingsNC = Assembly.settingsNavigationController(withRootViewController: Assembly.settingsViewController())
         
         let tabBarController = Assembly.tabBarController(withControllers: eventsNC, settingsNC)
@@ -21,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-fileprivate final class Assembly {
+final class Assembly {
     
     class func tabBarController(withControllers firstNC: UINavigationController, _ secondNC:
         UINavigationController) -> UITabBarController {
@@ -46,8 +44,10 @@ fileprivate final class Assembly {
         return settingsNC
     }
     
-    class func eventMembersViewController() -> UIViewController {
+    class func eventMembersViewController() -> EventMembersViewController {
         let eventMembersVC = EventMembersViewController()
+        let presenter = EventMembersPresenter(model: EventMembersService(), view: eventMembersVC)
+        eventMembersVC.presenter = presenter
         return eventMembersVC
     }
     

@@ -1,9 +1,14 @@
 import UIKit
 
 struct DataToShare {
-    let eventId: Int
-    let eventTitle: String
+    let eventId: Int?
+    let eventTitle: String?
     init(id eventId: Int, title eventTitle: String) {
+        self.eventId = eventId
+        self.eventTitle = eventTitle
+    }
+    
+    init(eventId: Int? = nil, eventTitle: String? = nil) {
         self.eventId = eventId
         self.eventTitle = eventTitle
     }
@@ -11,17 +16,21 @@ struct DataToShare {
 
 class EventMembersViewController: UIViewController {
     
-    internal var dataToShare: DataToShare?
-    private var eventTitle: String?
-    private var eventId: Int?
+    var presenter: IEventMembersPresenter!
+    
+    internal var dataToShare: DataToShare = DataToShare()
+//    private var eventTitle: String?
+//    private var eventId: Int?
     private let cellReuseID = "EventMemberCell"
     
     private let tableView = UITableView(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        verifySharedData() // presenters work
+//        verifySharedData() // presenters work
         configureView()
+        presenter.viewDidLoad(with: dataToShare)
+        presenter.getMembersList()
     }
     
     private func configureView() {
@@ -46,28 +55,35 @@ class EventMembersViewController: UIViewController {
     
     private func configureNavigationBarItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = eventTitle // localize
-        self.title = eventTitle // presenter ???
+//        self.navigationItem.title = eventTitle // localize
+//        self.title = eventTitle // presenter ???
     }
+//
+//    private func verifySharedData() {
+//        if AppConfig.isDebug {
+//            self.eventId = 106
+//        } else {
+//            self.eventId = self.dataToShare?.eventId
+//        }
+//        self.eventTitle = self.dataToShare?.eventTitle
+//    }
     
-    private func verifySharedData() {
-        if AppConfig.isDebug {
-            self.eventId = 106
-        } else {
-            self.eventId = self.dataToShare?.eventId
-        }
-        self.eventTitle = self.dataToShare?.eventTitle
+}
+
+extension EventMembersViewController: IEventMemberView {
+    func setMembers() {
+        tableView.reloadData()
     }
-    
 }
 
 extension EventMembersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return presenter.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventMemberCell
+        cell.textLabel?.text = presenter.cellModel(forRowAt: indexPath.row).firstName
         return cell
     }
 }

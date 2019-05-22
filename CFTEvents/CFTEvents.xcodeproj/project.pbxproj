@@ -39,6 +39,7 @@
 		3AB2E33F22958F850040C84A /* EventMembersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2E33E22958F850040C84A /* EventMembersService.swift */; };
 		3AC89540228DC8FF0090A58A /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */; };
 		3AC89545228E88910090A58A /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC89544228E88910090A58A /* EventsView.swift */; };
+		3ACDF9A92295B46500E0BBF6 /* IEventMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDF9A82295B46500E0BBF6 /* IEventMemberView.swift */; };
 		3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD26358228EF97C00440C64 /* ViewConstants.swift */; };
 		3AD2635B228EFC8200440C64 /* EventCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD2635A228EFC8200440C64 /* EventCellModel.swift */; };
 		3AD2635D228F1BC300440C64 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD2635C228F1BC200440C64 /* SnapKit.framework */; };
@@ -94,6 +95,7 @@
 		3AB2E33E22958F850040C84A /* EventMembersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersService.swift; sourceTree = "<group>"; };
 		3AC8953F228DC8FF0090A58A /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
 		3AC89544228E88910090A58A /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		3ACDF9A82295B46500E0BBF6 /* IEventMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventMemberView.swift; sourceTree = "<group>"; };
 		3AD26358228EF97C00440C64 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		3AD2635A228EFC8200440C64 /* EventCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellModel.swift; sourceTree = "<group>"; };
 		3AD2635C228F1BC200440C64 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		3AB2E32B229549A60040C84A /* EventMembers */ = {
 			isa = PBXGroup;
 			children = (
+				3ACDF9AA2295B4DD00E0BBF6 /* View */,
 				3AB2E33B229572D00040C84A /* Model */,
 				3AB2E33A229572C80040C84A /* Presenter */,
 				3AB2E333229564EA0040C84A /* Cell */,
@@ -299,8 +302,8 @@
 		3AB2E333229564EA0040C84A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3AB2E334229565170040C84A /* EventMemberCell.swift */,
 				3AB2E3362295700E0040C84A /* EventMemberCellModel.swift */,
+				3AB2E334229565170040C84A /* EventMemberCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -333,6 +336,14 @@
 			isa = PBXGroup;
 			children = (
 				3A22D2D2228720A600D20C5B /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3ACDF9AA2295B4DD00E0BBF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3ACDF9A82295B46500E0BBF6 /* IEventMemberView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +432,7 @@
 				3A77EEE322932DD6004C65C8 /* EventEndPoint.swift in Sources */,
 				3AB2E32D22954B0A0040C84A /* EventMembersViewController.swift in Sources */,
 				3AB2E32F22955E460040C84A /* AppConfig.swift in Sources */,
+				3ACDF9A92295B46500E0BBF6 /* IEventMemberView.swift in Sources */,
 				3AB2E33D229573790040C84A /* EventMembersApiResponse.swift in Sources */,
 				3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */,
 				3A77EEE622932E61004C65C8 /* EventsApiResponse.swift in Sources */,

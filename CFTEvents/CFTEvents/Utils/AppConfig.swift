@@ -10,4 +10,6 @@ struct AppConfig {
             #endif
         }
     }
+    
+    static let testToken: String = "cftte@mtest20!9"
 }
