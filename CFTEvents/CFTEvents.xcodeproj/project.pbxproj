@@ -15,6 +15,12 @@
 		3A22D2CF228711DE00D20C5B /* NavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2CE228711DE00D20C5B /* NavBarItems.swift */; };
 		3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */; };
 		3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D2228720A600D20C5B /* SettingsView.swift */; };
+		3A2693AE2296D574007BA620 /* DynamicFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2693AD2296D574007BA620 /* DynamicFontSize.swift */; };
+		3A5923BB229815E0003FE04C /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923BA229815E0003FE04C /* SnapKit.framework */; };
+		3A5923BD229815EA003FE04C /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923BA229815E0003FE04C /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A5923BE229815F0003FE04C /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923B8229815DA003FE04C /* M13Checkbox.framework */; };
+		3A5923BF229815F0003FE04C /* M13Checkbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923B8229815DA003FE04C /* M13Checkbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A5923C1229815FD003FE04C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923C0229815FD003FE04C /* Foundation.framework */; };
 		3A77EED622932BB7004C65C8 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EED522932BB7004C65C8 /* EndPointType.swift */; };
 		3A77EED822932C0E004C65C8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EED722932C0E004C65C8 /* HTTPMethod.swift */; };
 		3A77EEDA22932C37004C65C8 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77EED922932C37004C65C8 /* HTTPTask.swift */; };
@@ -42,8 +48,6 @@
 		3ACDF9A92295B46500E0BBF6 /* IEventMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDF9A82295B46500E0BBF6 /* IEventMemberView.swift */; };
 		3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD26358228EF97C00440C64 /* ViewConstants.swift */; };
 		3AD2635B228EFC8200440C64 /* EventCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD2635A228EFC8200440C64 /* EventCellModel.swift */; };
-		3AD2635D228F1BC300440C64 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD2635C228F1BC200440C64 /* SnapKit.framework */; };
-		3AD2635F228F1BF300440C64 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD2635C228F1BC200440C64 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,7 +57,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3AD2635F228F1BF300440C64 /* SnapKit.framework in Embed Frameworks */,
+				3A5923BD229815EA003FE04C /* SnapKit.framework in Embed Frameworks */,
+				3A5923BF229815F0003FE04C /* M13Checkbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2CC8612431AA5B639A63F649 /* Pods_CFTEvents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CFTEvents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37398F813848811846BA99B2 /* Pods-CFTEvents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFTEvents.debug.xcconfig"; path = "Target Support Files/Pods-CFTEvents/Pods-CFTEvents.debug.xcconfig"; sourceTree = "<group>"; };
 		3A19EA3F228C031D00FAFD45 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		3A19EA46228C118100FAFD45 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		3A22D2C52286A88C00D20C5B /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -69,6 +76,10 @@
 		3A22D2CE228711DE00D20C5B /* NavBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarItems.swift; sourceTree = "<group>"; };
 		3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		3A22D2D2228720A600D20C5B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3A2693AD2296D574007BA620 /* DynamicFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSize.swift; sourceTree = "<group>"; };
+		3A5923B8229815DA003FE04C /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = Carthage/Build/iOS/M13Checkbox.framework; sourceTree = "<group>"; };
+		3A5923BA229815E0003FE04C /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		3A5923C0229815FD003FE04C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A77EED522932BB7004C65C8 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		3A77EED722932C0E004C65C8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		3A77EED922932C37004C65C8 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -98,7 +109,8 @@
 		3ACDF9A82295B46500E0BBF6 /* IEventMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventMemberView.swift; sourceTree = "<group>"; };
 		3AD26358228EF97C00440C64 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		3AD2635A228EFC8200440C64 /* EventCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellModel.swift; sourceTree = "<group>"; };
-		3AD2635C228F1BC200440C64 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		3ADFF8DE2298144400508A19 /* M13Checkbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = M13Checkbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C080A94299455F2BA4BBF68D /* Pods-CFTEvents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFTEvents.release.xcconfig"; path = "Target Support Files/Pods-CFTEvents/Pods-CFTEvents.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,13 +118,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD2635D228F1BC300440C64 /* SnapKit.framework in Frameworks */,
+				3A5923C1229815FD003FE04C /* Foundation.framework in Frameworks */,
+				3A5923BB229815E0003FE04C /* SnapKit.framework in Frameworks */,
+				3A5923BE229815F0003FE04C /* M13Checkbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		169A77ACC415A0AD4741C4B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37398F813848811846BA99B2 /* Pods-CFTEvents.debug.xcconfig */,
+				C080A94299455F2BA4BBF68D /* Pods-CFTEvents.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3A19EA41228C03E600FAFD45 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +155,7 @@
 		3A22D2CA2286A9D500D20C5B /* UserStories */ = {
 			isa = PBXGroup;
 			children = (
+				3A9343002297FEFE00CEA417 /* MemberInfo */,
 				3AB2E32B229549A60040C84A /* EventMembers */,
 				3A7A8F82227DA9380023C804 /* Events */,
 				3A7A8F7F227DA4AB0023C804 /* Settings */,
@@ -146,6 +170,7 @@
 				3A22D2CE228711DE00D20C5B /* NavBarItems.swift */,
 				3AD26358228EF97C00440C64 /* ViewConstants.swift */,
 				3AB2E32E22955E460040C84A /* AppConfig.swift */,
+				3A2693AD2296D574007BA620 /* DynamicFontSize.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -203,9 +228,12 @@
 		3A7A8F60227D865A0023C804 = {
 			isa = PBXGroup;
 			children = (
-				3AD2635C228F1BC200440C64 /* SnapKit.framework */,
+				3A5923BA229815E0003FE04C /* SnapKit.framework */,
+				3A5923B8229815DA003FE04C /* M13Checkbox.framework */,
 				3A7A8F6B227D865A0023C804 /* CFTEvents */,
 				3A7A8F6A227D865A0023C804 /* Products */,
+				169A77ACC415A0AD4741C4B9 /* Pods */,
+				47A4DD8F9D0B421C04DB92BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,13 +291,20 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
+		3A9343002297FEFE00CEA417 /* MemberInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MemberInfo;
+			sourceTree = "<group>";
+		};
 		3AB2E32B229549A60040C84A /* EventMembers */ = {
 			isa = PBXGroup;
 			children = (
+				3AB2E333229564EA0040C84A /* Cell */,
 				3ACDF9AA2295B4DD00E0BBF6 /* View */,
 				3AB2E33B229572D00040C84A /* Model */,
 				3AB2E33A229572C80040C84A /* Presenter */,
-				3AB2E333229564EA0040C84A /* Cell */,
 				3AB2E32C22954B0A0040C84A /* EventMembersViewController.swift */,
 			);
 			path = EventMembers;
@@ -357,6 +392,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		47A4DD8F9D0B421C04DB92BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A5923C0229815FD003FE04C /* Foundation.framework */,
+				3ADFF8DE2298144400508A19 /* M13Checkbox.framework */,
+				2CC8612431AA5B639A63F649 /* Pods_CFTEvents.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -364,10 +409,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A7A8F7B227D865B0023C804 /* Build configuration list for PBXNativeTarget "CFTEvents" */;
 			buildPhases = (
+				13AFE0ADA84F3611067E063A /* [CP] Check Pods Manifest.lock */,
 				3A7A8F65227D865A0023C804 /* Sources */,
 				3A7A8F66227D865A0023C804 /* Frameworks */,
 				3A7A8F67227D865A0023C804 /* Resources */,
 				3AD26360228F1BF400440C64 /* Embed Frameworks */,
+				EC503CB5FDB639EFBBEECD09 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,6 +470,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13AFE0ADA84F3611067E063A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CFTEvents-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC503CB5FDB639EFBBEECD09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CFTEvents/Pods-CFTEvents-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
+				"${BUILT_PRODUCTS_DIR}/SBCardPopup/SBCardPopup.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBCardPopup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CFTEvents/Pods-CFTEvents-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3A7A8F65227D865A0023C804 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -431,6 +529,7 @@
 				3A77EED622932BB7004C65C8 /* EndPointType.swift in Sources */,
 				3A77EEE322932DD6004C65C8 /* EventEndPoint.swift in Sources */,
 				3AB2E32D22954B0A0040C84A /* EventMembersViewController.swift in Sources */,
+				3A2693AE2296D574007BA620 /* DynamicFontSize.swift in Sources */,
 				3AB2E32F22955E460040C84A /* AppConfig.swift in Sources */,
 				3ACDF9A92295B46500E0BBF6 /* IEventMemberView.swift in Sources */,
 				3AB2E33D229573790040C84A /* EventMembersApiResponse.swift in Sources */,
@@ -597,6 +696,7 @@
 		};
 		3A7A8F7C227D865B0023C804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37398F813848811846BA99B2 /* Pods-CFTEvents.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -620,6 +720,7 @@
 		};
 		3A7A8F7D227D865B0023C804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C080A94299455F2BA4BBF68D /* Pods-CFTEvents.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

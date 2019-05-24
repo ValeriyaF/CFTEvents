@@ -91,7 +91,7 @@ extension EventsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
-        cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row), index: indexPath.row)
+        cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row))
         cell.configureImage(with: presenter.cellImage(forRowAt: indexPath.row))
         return cell
     }
@@ -112,4 +112,5 @@ extension EventsViewController: UITableViewDelegate {
 //        navigationController?.pushViewController(vc, animated: true)
     }
 }
+
 

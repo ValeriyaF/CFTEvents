@@ -19,18 +19,14 @@ class EventMembersViewController: UIViewController {
     var presenter: IEventMembersPresenter!
     
     internal var dataToShare: DataToShare = DataToShare()
-//    private var eventTitle: String?
-//    private var eventId: Int?
     private let cellReuseID = "EventMemberCell"
     
     private let tableView = UITableView(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        verifySharedData() // presenters work
+        presenter.viewInitiated(with: dataToShare)
         configureView()
-        presenter.viewDidLoad(with: dataToShare)
-        presenter.getMembersList()
     }
     
     private func configureView() {
@@ -55,18 +51,10 @@ class EventMembersViewController: UIViewController {
     
     private func configureNavigationBarItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationItem.title = eventTitle // localize
-//        self.title = eventTitle // presenter ???
+        self.navigationItem.title = presenter.getTitle() // localize
+        self.title = presenter.getTitle() // presenter ???
     }
-//
-//    private func verifySharedData() {
-//        if AppConfig.isDebug {
-//            self.eventId = 106
-//        } else {
-//            self.eventId = self.dataToShare?.eventId
-//        }
-//        self.eventTitle = self.dataToShare?.eventTitle
-//    }
+
     
 }
 
@@ -83,11 +71,17 @@ extension EventMembersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventMemberCell
-        cell.textLabel?.text = presenter.cellModel(forRowAt: indexPath.row).firstName
+        cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ViewConstants.eventMembersTableViewHeightForRow
     }
 }
 
 extension EventMembersViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }

@@ -19,3 +19,17 @@ struct EventMemberCellModel {
         self.firstName = member.firstName ?? ""
     }
 }
+
+struct MemberImformation {
+    let lastName: String
+    let firstName: String
+    let isVisited: Bool
+    
+    init(lastName: String, firstName: String, isVisited: Bool) {
+        self.lastName = lastName
+        self.firstName = firstName
+        self.isVisited = isVisited
+    }
+}
+
+

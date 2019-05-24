@@ -1,13 +1,15 @@
 import Foundation
 
 protocol IEventMembersPresenter {
-    func getMembersList()
+    func getTitle() -> String
     func numberOfRows() -> Int
-    func cellModel(forRowAt index: Int) -> EventMemberCellModel
-    func viewDidLoad(with dataToShare: DataToShare)
+    func cellModel(forRowAt index: Int) -> MemberImformation
+    func viewInitiated(with dataToShare: DataToShare)
 }
 
 class EventMembersPresenter: IEventMembersPresenter {
+
+    
     private var model: EventMembersService
     private weak var view: IEventMemberView?
     
@@ -20,7 +22,7 @@ class EventMembersPresenter: IEventMembersPresenter {
         self.view = view
     }
     
-    func viewDidLoad(with dataToShare: DataToShare) {
+    func viewInitiated(with dataToShare: DataToShare) {
         if AppConfig.isDebug {
             self.eventId = 106
         } else {
@@ -28,17 +30,24 @@ class EventMembersPresenter: IEventMembersPresenter {
         }
         
         self.eventTitle = dataToShare.eventTitle
+
+        getMembersList()
     }
     
     func numberOfRows() -> Int {
         return membersList.count
     }
     
-    func cellModel(forRowAt index: Int) -> EventMemberCellModel {
-        return membersList[index]
+    func cellModel(forRowAt index: Int) -> MemberImformation {
+        return MemberImformation(lastName: membersList[index].lastName, firstName: membersList[index].firstName, isVisited: membersList[index].isVisited)
     }
     
-    func getMembersList() {
+    
+    func getTitle() -> String {
+        return eventTitle ?? ""
+    }
+    
+    private func getMembersList() {
         model.loadMembersList(withEventId: eventId ?? 0) { [weak self] (data) in
             self?.membersList = data?.compactMap { EventMemberCellModel(member: $0) } ?? []
             DispatchQueue.main.async {
@@ -46,6 +55,5 @@ class EventMembersPresenter: IEventMembersPresenter {
             }
         }
     }
-    
 
 }

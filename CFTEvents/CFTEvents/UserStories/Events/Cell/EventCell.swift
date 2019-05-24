@@ -8,7 +8,7 @@ class EventCell: UITableViewCell {
         let imgView = UIImageView(image: nil)
         imgView.layer.cornerRadius = ViewConstants.viewCornerRadius
         return imgView
-    } ()
+    }()
     
     private let descriptionLabel: UILabel = {
         let dLabel = UILabel(frame: .zero)
@@ -49,7 +49,7 @@ class EventCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    func configureLabels(with model: EventCellModel, index: Int) {
+    func configureLabels(with model: EventCellModel) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         startDateLabel.text = model.startDate
