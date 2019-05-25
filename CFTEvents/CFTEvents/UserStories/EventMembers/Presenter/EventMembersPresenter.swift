@@ -1,10 +1,13 @@
 import Foundation
 
 protocol IEventMembersPresenter {
+    func updateMembers()
     func getTitle() -> String
     func numberOfRows() -> Int
-    func cellModel(forRowAt index: Int) -> MemberImformation
+    func cellModel(forRowAt index: Int) -> MemberInformation
     func viewInitiated(with dataToShare: DataToShare)
+    func checkboxStateChange(to state: Bool, forRow index: Int)
+//    func searchBarFilter(textDidChange searchText: String?, scope: SearchScope)
 }
 
 class EventMembersPresenter: IEventMembersPresenter {
@@ -38,13 +41,24 @@ class EventMembersPresenter: IEventMembersPresenter {
         return membersList.count
     }
     
-    func cellModel(forRowAt index: Int) -> MemberImformation {
-        return MemberImformation(lastName: membersList[index].lastName, firstName: membersList[index].firstName, isVisited: membersList[index].isVisited)
+    func cellModel(forRowAt index: Int) -> MemberInformation {
+        return MemberInformation(lastName: membersList[index].lastName, firstName: membersList[index].firstName, isVisited: membersList[index].isVisited)
     }
     
     
     func getTitle() -> String {
         return eventTitle ?? ""
+    }
+    
+    func updateMembers() {
+        getMembersList()
+        
+    }
+    
+    func checkboxStateChange(to state: Bool, forRow index: Int) {
+        model.confirmMembersVisit(withEventId: eventId ?? 106, memderId: membersList[index].id, memberState: state) { (str) in
+            print(str)
+        }
     }
     
     private func getMembersList() {

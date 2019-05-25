@@ -4,7 +4,11 @@ import M13Checkbox
 class EventMemberCell: UITableViewCell {
     
     private let cellContentView = UIView(frame: .zero)
-    let checkbox = M13Checkbox(frame: .zero)
+    var checkbox = M13Checkbox(frame: .zero)
+    
+    var checkboxState: ((_ state: Bool) -> ())? = nil
+    
+    
     private let membersNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.backgroundColor = .clear
@@ -25,12 +29,26 @@ class EventMemberCell: UITableViewCell {
     }
     
     
-    func configureState(with model: MemberImformation) {
+    func configureState(with model: MemberInformation) {
         membersNameLabel.text = "\(model.firstName) \(model.lastName)"
         if model.isVisited {
             checkbox.setCheckState(.checked, animated: false)
         } else {
             checkbox.setCheckState(.unchecked, animated: false)
+        }
+    }
+    
+    @objc func checkboxValueChanged(_ sender: M13Checkbox) {
+        if let checkboxAction = self.checkboxState {
+            switch sender.checkState {
+            case .checked:
+                checkboxAction(true)
+            case .mixed:
+                checkboxAction(false)
+            case .unchecked:
+                checkboxAction(false)
+            }
+            
         }
     }
     
@@ -53,15 +71,19 @@ class EventMemberCell: UITableViewCell {
             make.width.equalToSuperview().multipliedBy(7.0 / 8.0)
         }
         
+        checkbox.boxType = .square
+        
+        checkbox.addTarget(self, action: #selector(self.checkboxValueChanged(_:)), for: UIControl.Event.valueChanged)
+
         checkbox.snp.makeConstraints { make in
             make.height.equalToSuperview().offset(-10)
             make.centerY.equalToSuperview()
-            make.left.equalTo(membersNameLabel.snp.right)
-            make.right.equalToSuperview()
+            make.left.equalTo(membersNameLabel.snp.right).offset(25)
+            make.right.equalToSuperview().offset(-5)
         }
-//        checkbox.setCheckState(.checked, animated: false)
-        
     }
+    
+
 }
 
 

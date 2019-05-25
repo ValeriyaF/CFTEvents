@@ -37,8 +37,9 @@ class EventsPresenter: IEventsPresenter {
     }
     
     func cellImage(forRowAt index: Int) -> UIImage? {
-        model.getImage(for: index) { [weak self](image, url) in
+        model.getImage(for: index) { [weak self] (image, url) in
             self?.initImage(with: image ?? nil)
+//            self.view.reload
         }
         return self.image
     }

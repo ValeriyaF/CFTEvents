@@ -1,5 +1,22 @@
 import UIKit
 
+
+fileprivate enum SearchScope: Int {
+    case visited
+    case notVisited
+}
+
+fileprivate extension SearchScope {
+    var title: String {
+        switch self {
+        case .visited:
+            return "Visited"
+        case .notVisited:
+            return "Not visited"
+        }
+    }
+}
+
 struct DataToShare {
     let eventId: Int?
     let eventTitle: String?
@@ -22,6 +39,30 @@ class EventMembersViewController: UIViewController {
     private let cellReuseID = "EventMemberCell"
     
     private let tableView = UITableView(frame: .zero)
+    private let searchController = UISearchController(searchResultsController: nil)
+    lazy private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        return refreshControl
+    }()
+    private var isSearchActive = false {
+        didSet {
+            if isSearchActive == oldValue {
+                return
+            }
+            if isSearchActive {
+                refreshControl.removeFromSuperview()
+            } else {
+                tableView.addSubview(refreshControl)
+                if presenter.numberOfRows() > 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                    }
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +72,9 @@ class EventMembersViewController: UIViewController {
     
     private func configureView() {
         view.addSubview(tableView)
-        
         configureTableView()
         configureNavigationBarItem()
+        configureSearchController()
     }
     
     private func configureTableView() {
@@ -47,6 +88,7 @@ class EventMembersViewController: UIViewController {
         }
         
         tableView.separatorStyle = .none
+        tableView.refreshControl = refreshControl
     }
     
     private func configureNavigationBarItem() {
@@ -54,12 +96,33 @@ class EventMembersViewController: UIViewController {
         self.navigationItem.title = presenter.getTitle() // localize
         self.title = presenter.getTitle() // presenter ???
     }
+    
+    private func configureSearchController() {
+        searchController.searchBar.scopeButtonTitles = [SearchScope.visited.title, SearchScope.notVisited.title]
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
+        definesPresentationContext = true
+    }
+    
+    
+    @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+        presenter.updateMembers()
+    }
 
     
 }
 
 extension EventMembersViewController: IEventMemberView {
     func setMembers() {
+        tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
     }
 }
@@ -72,6 +135,9 @@ extension EventMembersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventMemberCell
         cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row))
+        cell.checkboxState = { state in
+            self.presenter.checkboxStateChange(to: state, forRow: indexPath.row)
+        }
         return cell
     }
     
@@ -83,5 +149,30 @@ extension EventMembersViewController: UITableViewDataSource {
 extension EventMembersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        let ratingVC = MemberInfoPopupViewController(nibName: nil, bundle: nil)
+
+        // Present dialog
+        
+        ratingVC.modalPresentationStyle = .overCurrentContext
+        self.present(ratingVC, animated: true, completion: nil)
     }
+}
+
+extension EventMembersViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearchActive = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearchActive = false
+    }
+}
+
+extension EventMembersViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    
 }

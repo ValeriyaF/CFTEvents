@@ -20,7 +20,7 @@ struct EventMemberCellModel {
     }
 }
 
-struct MemberImformation {
+struct MemberInformation {
     let lastName: String
     let firstName: String
     let isVisited: Bool
