@@ -1,6 +1,5 @@
 import UIKit
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -18,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
 }
 
 final class Assembly {
@@ -47,7 +47,7 @@ final class Assembly {
     
     class func eventMembersViewController() -> EventMembersViewController {
         let eventMembersVC = EventMembersViewController()
-        let presenter = EventMembersPresenter(model: EventMembersService(), view: eventMembersVC)
+        let presenter = EventMembersPresenter(model: EventMembersService(networkManager: NetworkManager()), view: eventMembersVC)
         eventMembersVC.presenter = presenter
         return eventMembersVC
     }
@@ -69,7 +69,6 @@ final class Assembly {
         let eventsNC = UINavigationController(rootViewController: vc)
         return eventsNC
     }
-    
     
 }
 

@@ -2,12 +2,12 @@ import Foundation
 
 enum EventApi {
     case events
-    case image
+    case members(eventId: Int)
 }
 
 extension EventApi: EndPointType {
     var baseURL: URL {
-        guard let url = URL(string: "https://team.cft.ru/") else {
+        guard let url = URL(string: "https://team.cft.ru/") else { //https://team.cft.ru/api/v1/registration/members/event/\(eventId)/confirmation?token=\(AppConfig.testToken)
             fatalError("baseURL could not be configured.")
         }
         return url
@@ -17,8 +17,8 @@ extension EventApi: EndPointType {
         switch self {
         case .events:
             return "api/v1/Events/registration"
-        case .image:
-            return ""
+        case .members(let eventId):
+            return "api/v1/registration/members/event/\(eventId)" //?token=\(AppConfig.testToken)" // right way add token?
         }
     }
     
@@ -27,7 +27,12 @@ extension EventApi: EndPointType {
     }
     
     var task: HTTPTask {
-        return .request
+        switch self {
+        case .members(let eventId):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: ["token":AppConfig.testToken])
+        default:
+            return .request
+        }
     }
     
     var headers: HTTPHeaders? {

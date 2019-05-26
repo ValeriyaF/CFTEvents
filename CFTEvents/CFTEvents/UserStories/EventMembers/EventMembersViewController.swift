@@ -151,8 +151,13 @@ extension EventMembersViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         let ratingVC = MemberInfoPopupViewController(nibName: nil, bundle: nil)
-
-        // Present dialog
+//
+//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.alpha = 0.4
+//        blurEffectView.frame = self.view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        self.view.addSubview(blurEffectView)
         
         ratingVC.modalPresentationStyle = .overCurrentContext
         self.present(ratingVC, animated: true, completion: nil)

@@ -3,13 +3,12 @@ import UIKit
 protocol IEventsPresenter {
     func numberOfRows() -> Int
     func cellModel(forRowAt index: Int) -> EventCellModel
-    func cellImage(forRowAt index: Int) -> UIImage?
+    func cellImage(forRowAt index: Int) -> URL?
     func updateEventsList()
     func didSelectedTableViewCell(index: Int)
 }
 
 class EventsPresenter: IEventsPresenter {
-
     
     private let model: EventsService
     private weak var view: IEventsView?
@@ -36,12 +35,8 @@ class EventsPresenter: IEventsPresenter {
         getEvents()
     }
     
-    func cellImage(forRowAt index: Int) -> UIImage? {
-        model.getImage(for: index) { [weak self] (image, url) in
-            self?.initImage(with: image ?? nil)
-//            self.view.reload
-        }
-        return self.image
+    func cellImage(forRowAt index: Int) -> URL? {
+        return model.getCurrentImageUrl(for: index)
     }
     
     func didSelectedTableViewCell(index: Int) {

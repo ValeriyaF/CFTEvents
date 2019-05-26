@@ -2,15 +2,15 @@ import UIKit
 
 class MemberInfoPopupViewController: UIViewController {
     
-    private let testView = UIView(frame: .zero)
+    private let memberInfoView = UIView(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .clear
         
-        self.view.addSubview(testView)
+        self.view.addSubview(memberInfoView)
         
-        testView.backgroundColor = .red
+        memberInfoView.backgroundColor = .white
         
         configureView()
         
@@ -18,9 +18,13 @@ class MemberInfoPopupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        testView.snp.makeConstraints { (make) in
-            make.right.left.top.bottom.equalToSuperview().offset(100)
+        memberInfoView.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view).offset(ViewConstants.membersInfoPopupViewOffset)
+            make.height.equalTo(self.view).offset(ViewConstants.membersInfoPopupViewOffset - 130)
+            make.center.equalTo(self.view)
         }
+        
+        memberInfoView.layer.cornerRadius = ViewConstants.viewCornerRadius
     }
     
     private func configureView() {

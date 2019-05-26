@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import SDWebImage
 
 class EventCell: UITableViewCell {
     private let roundView = UIView(frame: .zero)
@@ -7,20 +8,28 @@ class EventCell: UITableViewCell {
     private let cardImageView: UIImageView = {
         let imgView = UIImageView(image: nil)
         imgView.layer.cornerRadius = ViewConstants.viewCornerRadius
+        imgView.layer.masksToBounds = true
+        
+//        imgView.layer.shouldRasterize = true
         return imgView
     }()
     
     private let descriptionLabel: UILabel = {
         let dLabel = UILabel(frame: .zero)
-        dLabel.backgroundColor = .clear
+        dLabel.backgroundColor = .white
+        dLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        dLabel.textAlignment = .natural
+        dLabel.textColor = .darkGray
         dLabel.layer.masksToBounds = true
         return dLabel
     }()
     
     private let titleLabel: UILabel = {
         let tLabel = UILabel(frame: .zero)
-        tLabel.backgroundColor = .clear
+        tLabel.backgroundColor = .white
         tLabel.layer.masksToBounds = true
+//        tLabel.font = UIFont(name: tLabel.font.fontName, size: DynamicFontSize.convertTextSize(25))
+        tLabel.font = UIFont.boldSystemFont(ofSize: DynamicFontSize.convertTextSize(25))
         return tLabel
     }()
     
@@ -42,7 +51,9 @@ class EventCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureSubviews() // TODO: add shadow
+
+        configureSubviews()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,21 +65,11 @@ class EventCell: UITableViewCell {
         descriptionLabel.text = model.description
         startDateLabel.text = model.startDate
         cityLabel.text = model.cities
-        
-//        eventsModel.getImage(for: index) { (image, url) in
-//            DispatchQueue.main.async {
-//                self.cardImageView.image = image
-//            }
-//        }
     }
     
-    func configureImage(with image: UIImage?) {
-        cardImageView.image = image
+    func configureImage(with url: URL?) {
+        cardImageView.sd_setImage(with: url, placeholderImage: nil)
     }
-    
-//    func configureImage(with image: UIImage?) {
-//        cardImageView.image = image
-//    }
     
     private func configureSubviews() {
         self.backgroundColor = .white
@@ -89,9 +90,22 @@ class EventCell: UITableViewCell {
             make.width.height.equalTo(self).offset(ViewConstants.cellRoundViewOffset)
             make.center.equalTo(self)
         }
-        roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
+        
+        roundView.layer.shadowColor = UIColor.black.cgColor
+        roundView.layer.shadowOpacity = 0.5
+        roundView.layer.shadowOffset = CGSize.zero
+        roundView.layer.shadowRadius = ViewConstants.viewCornerRadius
+        roundView.layer.shouldRasterize = true
+        
+//        roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
+//        roundView.clipsToBounds = false
+//        roundView.layer.shadowColor = UIColor.black.cgColor
+//        roundView.layer.shadowOpacity = 1
+//        roundView.layer.shadowOffset = CGSize.zero
+//        roundView.layer.shadowRadius = ViewConstants.viewCornerRadius
+//        roundView.layer.shadowPath = UIBezierPath(roundedRect: roundView.bounds, cornerRadius: 10).cgPath
     }
-    
+
     private func configureLabels() {
         descriptionLabel.snp.makeConstraints { make -> Void in
             make.bottom.left.right.equalTo(roundView)
@@ -103,7 +117,7 @@ class EventCell: UITableViewCell {
         titleLabel.snp.makeConstraints { make -> Void in
             make.bottom.equalTo(descriptionLabel.snp.top)
             make.height.equalTo(descriptionLabel.snp.height)
-            make.width.equalTo(descriptionLabel.snp.width).dividedBy(2)
+            make.width.equalTo(descriptionLabel.snp.width)
         }
         
         startDateLabel.snp.makeConstraints { make -> Void in
@@ -123,7 +137,6 @@ class EventCell: UITableViewCell {
         cardImageView.snp.makeConstraints { make -> Void in
             make.left.right.top.bottom.equalTo(roundView)
         }
-        
         cardImageView.layer.cornerRadius = ViewConstants.viewCornerRadius
     }
 }

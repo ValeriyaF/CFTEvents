@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A18A9AB229953E0000EE373 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A18A9AA229953E0000EE373 /* UIViewExtension.swift */; };
 		3A19EA40228C031D00FAFD45 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA3F228C031D00FAFD45 /* EventCell.swift */; };
 		3A19EA47228C118100FAFD45 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19EA46228C118100FAFD45 /* EventsService.swift */; };
 		3A202E1622992021002A04F1 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A202E1422992019002A04F1 /* SDWebImage.framework */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A18A9AA229953E0000EE373 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3A19EA3F228C031D00FAFD45 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		3A19EA46228C118100FAFD45 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		3A202E1422992019002A04F1 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				3AD26358228EF97C00440C64 /* ViewConstants.swift */,
 				3AB2E32E22955E460040C84A /* AppConfig.swift */,
 				3A2693AD2296D574007BA620 /* DynamicFontSize.swift */,
+				3A18A9AA229953E0000EE373 /* UIViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				3A2693AE2296D574007BA620 /* DynamicFontSize.swift in Sources */,
 				3AB0C0A822984B08000C9CBB /* MemberInfoPopupViewController.swift in Sources */,
 				3AB2E32F22955E460040C84A /* AppConfig.swift in Sources */,
+				3A18A9AB229953E0000EE373 /* UIViewExtension.swift in Sources */,
 				3ACDF9A92295B46500E0BBF6 /* IEventMemberView.swift in Sources */,
 				3AB2E33D229573790040C84A /* EventMembersApiResponse.swift in Sources */,
 				3AD26359228EF97C00440C64 /* ViewConstants.swift in Sources */,

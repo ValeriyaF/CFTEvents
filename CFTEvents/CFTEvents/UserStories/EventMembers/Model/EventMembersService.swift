@@ -7,10 +7,16 @@ struct ConfirmationApiResponse: Codable {
 }
 
 class EventMembersService {
+    
+    private let networkManager: NetworkManager?
     private var membersList: EventMembersApiResponse?
     
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
+    }
+    
     func confirmMembersVisit(withEventId eventId: Int, memderId memderId: Int, memberState memberState: Bool, completion: @escaping (_ error: String) -> ()) {
-        let data = ConfirmationApiResponse(id: memderId, isVisited: memberState, visitedDate: "2019-05-25T01:54:58.1100")
+        let data = ConfirmationApiResponse(id: memderId, isVisited: memberState, visitedDate: getCurrentDate())
  
            let httpBody = try! JSONEncoder().encode([data])
 
@@ -38,7 +44,15 @@ class EventMembersService {
         
     }
     
+    func testLoadML() {
+        networkManager?.getMembers(forEvent: 106, completion: { (data, error) in
+            print(data)
+            print(error)
+        })
+    }
+    
     func loadMembersList(withEventId id: Int, completion: @escaping (_ data: EventMembersApiResponse) -> ()) {
+        
         var loadedData: EventMembersApiResponse?
         let url = URL(string: "https://team.cft.ru/api/v1/registration/members/event/\(id)?token=\(AppConfig.testToken)")!
         
@@ -69,4 +83,5 @@ class EventMembersService {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS"
         return formatter.string(from: date)
     }
+    
 }

@@ -11,7 +11,6 @@ protocol IEventMembersPresenter {
 }
 
 class EventMembersPresenter: IEventMembersPresenter {
-
     
     private var model: EventMembersService
     private weak var view: IEventMemberView?
@@ -26,6 +25,8 @@ class EventMembersPresenter: IEventMembersPresenter {
     }
     
     func viewInitiated(with dataToShare: DataToShare) {
+        
+        model.testLoadML()
         if AppConfig.isDebug {
             self.eventId = 106
         } else {
