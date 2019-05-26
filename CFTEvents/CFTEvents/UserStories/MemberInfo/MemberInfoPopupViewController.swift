@@ -2,6 +2,7 @@ import UIKit
 
 class MemberInfoPopupViewController: UIViewController {
     
+    var memberInfoViewDidDisappear: (() -> ())? = nil
     private let memberInfoView = UIView(frame: .zero)
 
     override func viewDidLoad() {
@@ -33,7 +34,12 @@ class MemberInfoPopupViewController: UIViewController {
         self.view.addGestureRecognizer(gestureRecognizer)
     }
     
-    @IBAction func tapOnBG() {
+    @IBAction func tapOnBG(_ sender: UIViewController) {
         self.dismiss(animated: true, completion: nil)
+        
+        if let action = self.memberInfoViewDidDisappear {
+            action()
+        }
+        
     }
 }

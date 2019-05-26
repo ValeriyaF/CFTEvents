@@ -91,19 +91,8 @@ class EventCell: UITableViewCell {
             make.center.equalTo(self)
         }
         
-        roundView.layer.shadowColor = UIColor.black.cgColor
-        roundView.layer.shadowOpacity = 0.5
-        roundView.layer.shadowOffset = CGSize.zero
-        roundView.layer.shadowRadius = ViewConstants.viewCornerRadius
-        roundView.layer.shouldRasterize = true
-        
-//        roundView.layer.cornerRadius = ViewConstants.viewCornerRadius
-//        roundView.clipsToBounds = false
-//        roundView.layer.shadowColor = UIColor.black.cgColor
-//        roundView.layer.shadowOpacity = 1
-//        roundView.layer.shadowOffset = CGSize.zero
-//        roundView.layer.shadowRadius = ViewConstants.viewCornerRadius
-//        roundView.layer.shadowPath = UIBezierPath(roundedRect: roundView.bounds, cornerRadius: 10).cgPath
+        roundView.addShadow(withOpacity: 0.5) //  const
+    
     }
 
     private func configureLabels() {

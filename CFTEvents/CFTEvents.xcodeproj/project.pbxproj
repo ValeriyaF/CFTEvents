@@ -19,6 +19,8 @@
 		3A22D2D122871F5C00D20C5B /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */; };
 		3A22D2D3228720A600D20C5B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22D2D2228720A600D20C5B /* SettingsView.swift */; };
 		3A2693AE2296D574007BA620 /* DynamicFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2693AD2296D574007BA620 /* DynamicFontSize.swift */; };
+		3A4DAA9D229B1D8500AEE303 /* UIVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4DAA9C229B1D8500AEE303 /* UIVIewExtension.swift */; };
+		3A4DAA9F229B303E00AEE303 /* tmpviewforlayouthelp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4DAA9E229B303E00AEE303 /* tmpviewforlayouthelp.xib */; };
 		3A5923BB229815E0003FE04C /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923BA229815E0003FE04C /* SnapKit.framework */; };
 		3A5923BD229815EA003FE04C /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923BA229815E0003FE04C /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A5923BE229815F0003FE04C /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5923B8229815DA003FE04C /* M13Checkbox.framework */; };
@@ -82,6 +84,8 @@
 		3A22D2D022871F5C00D20C5B /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		3A22D2D2228720A600D20C5B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3A2693AD2296D574007BA620 /* DynamicFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSize.swift; sourceTree = "<group>"; };
+		3A4DAA9C229B1D8500AEE303 /* UIVIewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtension.swift; sourceTree = "<group>"; };
+		3A4DAA9E229B303E00AEE303 /* tmpviewforlayouthelp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tmpviewforlayouthelp.xib; sourceTree = "<group>"; };
 		3A5923B8229815DA003FE04C /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = Carthage/Build/iOS/M13Checkbox.framework; sourceTree = "<group>"; };
 		3A5923BA229815E0003FE04C /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		3A5923C0229815FD003FE04C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +184,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		3A4DAA9B229B1D7000AEE303 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3A4DAA9C229B1D8500AEE303 /* UIVIewExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3A77EED422932B4F004C65C8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +266,7 @@
 		3A7A8F6B227D865A0023C804 /* CFTEvents */ = {
 			isa = PBXGroup;
 			children = (
+				3A4DAA9B229B1D7000AEE303 /* Extensions */,
 				3A77EED422932B4F004C65C8 /* Network */,
 				3A22D2CD228711BD00D20C5B /* Utils */,
 				3A22D2CA2286A9D500D20C5B /* UserStories */,
@@ -301,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB0C0A722984B08000C9CBB /* MemberInfoPopupViewController.swift */,
+				3A4DAA9E229B303E00AEE303 /* tmpviewforlayouthelp.xib */,
 			);
 			path = MemberInfo;
 			sourceTree = "<group>";
@@ -469,6 +483,7 @@
 			files = (
 				3A7A8F77227D865B0023C804 /* LaunchScreen.storyboard in Resources */,
 				3A7A8F74227D865B0023C804 /* Assets.xcassets in Resources */,
+				3A4DAA9F229B303E00AEE303 /* tmpviewforlayouthelp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A77EED622932BB7004C65C8 /* EndPointType.swift in Sources */,
+				3A4DAA9D229B1D8500AEE303 /* UIVIewExtension.swift in Sources */,
 				3A77EEE322932DD6004C65C8 /* EventEndPoint.swift in Sources */,
 				3AB2E32D22954B0A0040C84A /* EventMembersViewController.swift in Sources */,
 				3A2693AE2296D574007BA620 /* DynamicFontSize.swift in Sources */,

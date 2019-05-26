@@ -5,9 +5,7 @@ class EventMemberCell: UITableViewCell {
     
     private let cellContentView = UIView(frame: .zero)
     var checkbox = M13Checkbox(frame: .zero)
-    
     var checkboxState: ((_ state: Bool) -> ())? = nil
-    
     
     private let membersNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -20,7 +18,7 @@ class EventMemberCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureSubviews() // TODO: add shadow
+        configureSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,7 +35,8 @@ class EventMemberCell: UITableViewCell {
         }
     }
     
-    @objc func checkboxValueChanged(_ sender: M13Checkbox) {
+    
+    @IBAction private func checkboxValueChanged(_ sender: M13Checkbox) {
         if let checkboxAction = self.checkboxState {
             switch sender.checkState {
             case .checked:
@@ -69,13 +68,8 @@ class EventMemberCell: UITableViewCell {
             make.left.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(7.0 / 8.0)
         }
-        
-        cellContentView.layer.shadowColor = UIColor.black.cgColor
-        cellContentView.layer.shadowOpacity = 0.5
-        cellContentView.layer.shadowOffset = CGSize.zero
-        cellContentView.layer.shadowRadius = ViewConstants.viewCornerRadius
-        cellContentView.layer.shouldRasterize = true
-        
+
+        cellContentView.addShadow(withOpacity: 0.3)
         checkbox.boxType = .square
         
         checkbox.addTarget(self, action: #selector(self.checkboxValueChanged(_:)), for: UIControl.Event.valueChanged)
@@ -88,17 +82,8 @@ class EventMemberCell: UITableViewCell {
         }
     }
     
-
 }
 
-extension UIView {
-    func addShadow(view: UIView) {
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.5
-        view.layer.shadowOffset = CGSize.zero
-        view.layer.shadowRadius = ViewConstants.viewCornerRadius
-        view.layer.shouldRasterize = true
-    }
-}
+
 
 

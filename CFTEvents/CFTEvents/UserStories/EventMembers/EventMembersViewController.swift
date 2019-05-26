@@ -39,6 +39,7 @@ class EventMembersViewController: UIViewController {
     private let cellReuseID = "EventMemberCell"
     
     private let tableView = UITableView(frame: .zero)
+    private let blurEffectView = UIVisualEffectView(effect: nil)
     private let searchController = UISearchController(searchResultsController: nil)
     lazy private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -112,11 +113,19 @@ class EventMembersViewController: UIViewController {
         definesPresentationContext = true
     }
     
+    private func addBlurEffectView() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
+        self.blurEffectView.effect = blurEffect
+        blurEffectView.alpha = 0.4
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+    }
     
-    @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+    
+    @IBAction private func handleRefresh(_ refreshControl: UIRefreshControl) {
         presenter.updateMembers()
     }
-
     
 }
 
@@ -124,6 +133,17 @@ extension EventMembersViewController: IEventMemberView {
     func setMembers() {
         tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
+    }
+    
+    func showAlert(withMsg msg: String, title: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func returnActualCheckboxState(forCell index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
 
@@ -151,13 +171,12 @@ extension EventMembersViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         let ratingVC = MemberInfoPopupViewController(nibName: nil, bundle: nil)
-//
-//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.alpha = 0.4
-//        blurEffectView.frame = self.view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        self.view.addSubview(blurEffectView)
+        addBlurEffectView()
+        ratingVC.memberInfoViewDidDisappear = {
+            self.blurEffectView.removeFromSuperview()
+        }
+        
+        
         
         ratingVC.modalPresentationStyle = .overCurrentContext
         self.present(ratingVC, animated: true, completion: nil)

@@ -57,8 +57,13 @@ class EventMembersPresenter: IEventMembersPresenter {
     }
     
     func checkboxStateChange(to state: Bool, forRow index: Int) {
-        model.confirmMembersVisit(withEventId: eventId ?? 106, memderId: membersList[index].id, memberState: state) { (str) in
-            print(str)
+        if state {
+            model.confirmMembersVisit(withEventId: eventId ?? 106, memderId: membersList[index].id, memberState: state) { (error) in
+                print(error)
+            }
+        } else {
+            view?.showAlert(withMsg: "You can't change the status of an already visited member", title: "Sorry") //add enum with msgs
+            view?.returnActualCheckboxState(forCell: index)
         }
     }
     

@@ -18,7 +18,7 @@ extension EventApi: EndPointType {
         case .events:
             return "api/v1/Events/registration"
         case .members(let eventId):
-            return "api/v1/registration/members/event/\(eventId)" //?token=\(AppConfig.testToken)" // right way add token?
+            return "api/v1/registration/members/event/\(eventId)" 
         }
     }
     
@@ -28,7 +28,7 @@ extension EventApi: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .members(let eventId):
+        case .members:
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: ["token":AppConfig.testToken])
         default:
             return .request
