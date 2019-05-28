@@ -13,4 +13,5 @@ class SettingsCell: UITableViewCell {
     func configureCell(with name: String) {
         self.textLabel?.text = name
     }
+    
 }

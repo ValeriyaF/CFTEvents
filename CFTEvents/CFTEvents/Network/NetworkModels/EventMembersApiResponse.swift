@@ -16,6 +16,7 @@ struct Member: Codable {
     let email: String?
     
     init(id: Int? = nil, phone: String? = nil, city: String? = nil, company: String? = nil, position: String? = nil, registeredDate: String? = nil, isVisited: Bool? = nil, lastName: String? = nil, firstName: String? = nil, patronymic: String? = nil, email: String? = nil) {
+        
         self.id = id
         self.phone = phone
         self.city = city

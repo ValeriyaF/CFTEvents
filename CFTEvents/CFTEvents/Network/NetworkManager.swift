@@ -1,7 +1,7 @@
 import Foundation
 
 enum NetworkResponse: String {
-    case success
+    // TODO: Выглядит как оверхед, может обойтись без этого и переименовать в NetworkError
     case authenticationError = "You need to be authenticated first."
     case badRequest = "Bad request"
     case outdated = "The url you requested is outdated."

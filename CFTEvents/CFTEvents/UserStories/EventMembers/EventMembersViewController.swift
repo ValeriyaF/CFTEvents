@@ -1,7 +1,7 @@
 import UIKit
 
 
-fileprivate enum SearchScope: Int {
+enum SearchScope: Int {
     case visited
     case notVisited
 }
@@ -56,7 +56,7 @@ class EventMembersViewController: UIViewController {
                 refreshControl.removeFromSuperview()
             } else {
                 tableView.addSubview(refreshControl)
-                if presenter.numberOfRows() > 0 {
+                if presenter.numberOfRows(isFiltered: false) > 0 { // ???
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                     }
@@ -149,12 +149,12 @@ extension EventMembersViewController: IEventMemberView {
 
 extension EventMembersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfRows()
+        return presenter.numberOfRows(isFiltered: isSearchActive)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventMemberCell
-        cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row))
+        cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row, isFiltered: isSearchActive))
         cell.checkboxState = { state in
             self.presenter.checkboxStateChange(to: state, forRow: indexPath.row)
         }
@@ -171,18 +171,17 @@ extension EventMembersViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         let ratingVC = MemberInfoPopupViewController(nibName: nil, bundle: nil)
+        ratingVC.model = presenter.setPopupViewModel(forRowAt: indexPath.row)
         addBlurEffectView()
+        ratingVC.modalPresentationStyle = .overCurrentContext
+        self.present(ratingVC, animated: true, completion: nil)
+        
         ratingVC.memberInfoViewDidDisappear = {
             self.blurEffectView.removeFromSuperview()
         }
-        
-        
-        
-        ratingVC.modalPresentationStyle = .overCurrentContext
-        self.present(ratingVC, animated: true, completion: nil)
     }
 }
-
+//      SearchBar
 extension EventMembersViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         isSearchActive = true
@@ -191,11 +190,22 @@ extension EventMembersViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearchActive = false
     }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        guard let scope = SearchScope(rawValue: searchBar.selectedScopeButtonIndex) else {
+            return
+        }
+        presenter.searchBarFilter(textDidChange: searchBar.text, scope: scope)
+    }
 }
 
 extension EventMembersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        let searchBar = searchController.searchBar
+        guard let scope = SearchScope(rawValue: searchBar.selectedScopeButtonIndex) else {
+            return
+        }
+        presenter.searchBarFilter(textDidChange: searchBar.text, scope: scope)
     }
     
     

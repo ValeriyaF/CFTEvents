@@ -5,10 +5,10 @@ class EventsViewController: UIViewController {
 
     private let tableView = UITableView(frame: .zero)
     private let activityIndicator = UIActivityIndicatorView(frame: .zero)
+    
     lazy private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(
-            self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     

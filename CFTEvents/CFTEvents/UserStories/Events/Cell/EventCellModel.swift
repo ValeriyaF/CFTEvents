@@ -12,6 +12,6 @@ struct EventCellModel {
         self.title = event.title ?? ""
         self.description = event.description ?? ""
         self.startDate = event.date?.start ?? "" // DateFormatter later
-        self.cities = event.cities?.compactMap { String($0?.nameEng ?? "") }.joined(separator: " ") ?? ""
+        self.cities = event.cities?.compactMap { String($0.nameEng ?? "") }.joined(separator: " ") ?? ""
     }
 }

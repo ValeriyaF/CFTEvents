@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 protocol IEventsPresenter {
     func numberOfRows() -> Int
@@ -14,8 +14,6 @@ class EventsPresenter: IEventsPresenter {
     private weak var view: IEventsView?
     
     private var eventsList: [EventCellModel] = []
-    
-    private var image: UIImage?
     
     init(model: EventsService, view: IEventsView) {
         self.model = model
@@ -55,15 +53,13 @@ class EventsPresenter: IEventsPresenter {
             }
         }
     }
-    
-    private func initEventsList(with data: EventsApiResponse) {
-            let newData = data?.compactMap { elenent in
-            EventCellModel(event: elenent)
-        }
+}
+
+private extension EventsPresenter {
+    func initEventsList(with data: EventsApiResponse) {
+//        let newData = data?.compactMap { elenent in
+//            EventCellModel(event: elenent)
+//        }
         self.eventsList = data?.compactMap { EventCellModel(event: $0) } ?? []
-    }
-    
-    private func initImage(with image: UIImage?) {
-        self.image = image
     }
 }

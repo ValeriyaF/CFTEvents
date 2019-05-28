@@ -19,18 +19,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EventMembersViewController.configureNavigationBarItem():EventMembersViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "eventTitle">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "EventMembersViewController.viewDidLoad():EventMembersViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "presenter">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EventMembersViewController.configureNavigationBarItem():EventMembersViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "eventTitle">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,6 +47,17 @@
          <PersistentStrings>
             <PersistentString
                value = "loadedImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EventMembersPresenter.checkboxStateChange(to:forRow:):EventMembersPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error">
+            </PersistentString>
+            <PersistentString
+               value = "membersList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
