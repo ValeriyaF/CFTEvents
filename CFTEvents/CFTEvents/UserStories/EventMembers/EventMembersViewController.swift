@@ -72,6 +72,7 @@ class EventMembersViewController: UIViewController {
         presenter.viewInitiated(with: dataToShare)
         subscribeOnThemeChange()
         configureView()
+        applyTheme()
     }
     
     private func applyTheme() {
@@ -224,6 +225,5 @@ extension EventMembersViewController: UISearchResultsUpdating {
         }
         presenter.searchBarFilter(textDidChange: searchBar.text, scope: scope)
     }
-    
     
 }

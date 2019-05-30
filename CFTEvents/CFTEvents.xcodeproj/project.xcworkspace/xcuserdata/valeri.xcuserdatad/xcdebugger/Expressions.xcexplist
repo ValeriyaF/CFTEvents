@@ -11,14 +11,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in EventsModel.loadData(withURL:completion:):EventsModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "imageURLs">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "EventsModel.getImage(indexPath:completion:):EventsModel.swift">
          <PersistentStrings>
             <PersistentString
@@ -27,13 +19,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EventMembersPresenter.numberOfRows(isFiltered:):EventMembersPresenter.swift">
+         contextName = "EventsPresenter.loadEvents():EventsPresenter.swift">
          <PersistentStrings>
             <PersistentString
-               value = "membersList">
-            </PersistentString>
-            <PersistentString
-               value = "filteredMembersList">
+               value = "events">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,10 +46,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in EventMembersPresenter.getMembersList():EventMembersPresenter.swift">
+         contextName = "EventMembersPresenter.numberOfRows(isFiltered:):EventMembersPresenter.swift">
          <PersistentStrings>
             <PersistentString
+               value = "filteredMembersList">
+            </PersistentString>
+            <PersistentString
                value = "membersList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in EventsModel.getData(completion:):EventsModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "networkManager">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -111,6 +111,14 @@
          contextName = "EventsPresenter.initEvents(with:):EventsPresenter.swift">
       </ContextState>
       <ContextState
+         contextName = "EventMembersPresenter.searchBarFilter(textDidChange:scope:):EventMembersPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filteredMembersList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "EventMembersPresenter.getTitle():EventMembersPresenter.swift">
          <PersistentStrings>
             <PersistentString
@@ -119,18 +127,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in EventsModel.loadData(withURL:completion:):EventsModel.swift">
+         contextName = "closure #1 in EventsPresenter.loadEvents():EventsPresenter.swift">
          <PersistentStrings>
             <PersistentString
-               value = "loadedImage">
+               value = "events">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EventsModel.getImage(for:completion:):EventsModel.swift">
+         contextName = "closure #1 in EventsModel.loadData(withURL:completion:):EventsModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "imageURLs">
+               value = "loadedImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -151,26 +159,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EventsPresenter.loadEvents():EventsPresenter.swift">
+         contextName = "EventsModel.getImage(for:completion:):EventsModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "events">
+               value = "imageURLs">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in EventsPresenter.loadEvents():EventsPresenter.swift">
+         contextName = "closure #1 in closure #1 in EventsModel.loadData(withURL:completion:):EventsModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "events">
+               value = "imageURLs">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in EventsModel.getData(completion:):EventsModel.swift">
+         contextName = "closure #1 in EventMembersPresenter.getMembersList():EventMembersPresenter.swift">
          <PersistentStrings>
             <PersistentString
-               value = "networkManager">
+               value = "membersList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

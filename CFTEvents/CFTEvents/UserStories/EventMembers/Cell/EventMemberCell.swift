@@ -3,7 +3,7 @@ import M13Checkbox
 
 class EventMemberCell: UITableViewCell {
     
-    private let cellBackgroundView = UIImageView(frame: .zero)
+    private let cellBackgroundView = UIView(frame: .zero)
     var checkbox = M13Checkbox(frame: .zero)
     var checkboxState: ((_ state: Bool) -> ())? = nil
     
@@ -18,9 +18,11 @@ class EventMemberCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.clear
-        selectedBackgroundView = bgColorView
+        
+//        let bgColorView = UIView()
+//        bgColorView.backgroundColor = UIColor.clear
+//        selectedBackgroundView = bgColorView
+        
         configureSubviews()
     }
     
@@ -41,20 +43,11 @@ class EventMemberCell: UITableViewCell {
     
     private func configureTheme(theme: Theme) {
         self.backgroundColor = theme.backgroundColor
-//        membersNameLabel.backgroundColor = theme.settingsCellBackgroundColor
         membersNameLabel.textColor = theme.settingsCellTextColor
+        cellBackgroundView.backgroundColor = theme.settingsCellBackgroundColor
+        self.selectionStyle = .none
         checkbox.backgroundColor = theme.settingsCellBackgroundColor
-        
-        switch theme {
-        case .light:
-            cellBackgroundView.image = UIImage(named: "defaultCellBackgroundColorForLightTheme")
-            cellBackgroundView.highlightedImage = UIImage(named: "highlightedCellBackgroundColorForLightTheme")
 
-        case .dark:
-            cellBackgroundView.image = UIImage(named: "defaultCellBackgroundColorForDarkTheme")
-            cellBackgroundView.highlightedImage = UIImage(named: "highlightedCellBackgroundColorForDarkTheme")
-
-        }
     }
     
     

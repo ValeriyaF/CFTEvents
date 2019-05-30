@@ -65,9 +65,9 @@ class EventCell: UITableViewCell {
     func configureLabels(with model: EventCellModel, theme: Theme) {
         titleLabel.text = "  \(model.title)"
         descriptionLabel.text = "  \(model.description)"
-        startDateLabel.text = model.startDate
+        startDateLabel.text = "  \(model.startDate.prefix(10))"
         print(model.startDate)
-        cityLabel.text = model.cities
+        cityLabel.text = "\(model.cities)"
         
         configureCellDesign(theme: theme)
     }
@@ -98,8 +98,6 @@ class EventCell: UITableViewCell {
             topDefaultCellBackground.image = UIImage(named: "defaultCellBackgroundColorForDarkTheme")
             topDefaultCellBackground.highlightedImage = UIImage(named: "highlightedCellBackgroundColorForDarkTheme")
         }
-
-
     }
     
     private func configureSubviews() {

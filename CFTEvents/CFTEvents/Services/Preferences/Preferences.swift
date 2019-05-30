@@ -20,7 +20,6 @@ class Preferences {
         get {
             if let theme = Theme(rawValue: settings[.selectedThemeKey]) {
                 ThemeManager.applyTheme(theme: theme)
-                print(theme)
                 return theme
             }
             return .light
