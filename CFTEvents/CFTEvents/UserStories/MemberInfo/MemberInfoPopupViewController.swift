@@ -91,6 +91,7 @@ class MemberInfoPopupViewController: UIViewController {
         infoLabelsDict[InfoLabels.company.rawValue]?.text = model.company
         infoLabelsDict[InfoLabels.position.rawValue]?.text = model.position
     }
+    
     private func configureMemberInfoView() {
         self.view.addSubview(memberInfoView)
         memberInfoView.snp.makeConstraints { (make) in

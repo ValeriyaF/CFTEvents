@@ -5,6 +5,7 @@ protocol ISettingsPresenter {
     func numberOfRows(inSection section: Int) -> Int
     func dataForCell(indexPath: IndexPath) -> String
     func titleForHeader(inSection section: Int) -> String
+    func rowData(indexPath: IndexPath) -> RowData
 }
 
 // relocate to model
@@ -51,6 +52,10 @@ class SettingsPresenter: ISettingsPresenter {
             let model = rows[indexPath.row].title
             return model
         }
+    }
+    
+    func rowData(indexPath: IndexPath) -> RowData {
+        return tableContent.sectionData[indexPath.section].rowData
     }
 }
 

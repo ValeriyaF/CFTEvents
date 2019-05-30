@@ -9,7 +9,6 @@ enum RowData {
     case theme(allCases: [Theme])
 }
 
-
 extension Theme {
     static let title = "THEME:"
     var title: String {

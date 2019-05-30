@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2019-05-24 23.59.50" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-f4-Lpm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CFTLogo" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-f4-Lpm">
                                 <rect key="frame" x="73" y="486" width="689" height="223"/>
                             </imageView>
                         </subviews>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2019-05-24 23.59.50" width="2389" height="797"/>
+        <image name="CFTLogo" width="2389" height="797"/>
     </resources>
 </document>

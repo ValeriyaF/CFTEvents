@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 final class Assembly {
     
-    class func tabBarController(withControllers firstNC: UINavigationController, _ secondNC:
-        UINavigationController) -> UITabBarController {
-        let tabBarController = UITabBarController()
+    class func tabBarController(withControllers firstNC: CustomNavigationController, _ secondNC:
+        CustomNavigationController) -> CustomTabBarController {
+        let tabBarController = CustomTabBarController()
         let controllers = [firstNC, secondNC]
         tabBarController.viewControllers = controllers
         
@@ -33,15 +33,16 @@ final class Assembly {
     
     class func settingsViewController() -> UIViewController {
         let settingsVC = SettingsViewController()
-        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0) // relocate
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "SettingsTabBarItem")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), selectedImage: UIImage(named: "SettingsTabBarItem"))
+        //        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0) // relocate
         let presenter = SettingsPresenter(view: settingsVC)
         settingsVC.presenter = presenter
         
         return settingsVC
     }
     
-    class func settingsNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
-        let settingsNC = UINavigationController(rootViewController: vc)
+    class func settingsNavigationController(withRootViewController vc: UIViewController) -> CustomNavigationController {
+        let settingsNC = CustomNavigationController(rootViewController: vc)
         return settingsNC
     }
     
@@ -52,21 +53,21 @@ final class Assembly {
         return eventMembersVC
     }
     
-    class func eventMembersNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
-        let eventMembersNC = UINavigationController(rootViewController: vc)
+    class func eventMembersNavigationController(withRootViewController vc: UIViewController) -> CustomNavigationController {
+        let eventMembersNC = CustomNavigationController(rootViewController: vc)
         return eventMembersNC
     }
     
     class func eventsViewController() -> UIViewController {
         let eventsVC = EventsViewController()
-        eventsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1) // relocate
+        eventsVC.tabBarItem = UITabBarItem(title: "Events", image: UIImage(named: "EventsTabBarItem")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), selectedImage: UIImage(named: "EventsTabBarItem"))
         let presenter = EventsPresenter(model: EventsService(networkManager: NetworkManager()), view: eventsVC)
         eventsVC.presenter = presenter
         return eventsVC
     }
     
-    class func eventsNavigationController(withRootViewController vc: UIViewController) -> UINavigationController {
-        let eventsNC = UINavigationController(rootViewController: vc)
+    class func eventsNavigationController(withRootViewController vc: UIViewController) -> CustomNavigationController {
+        let eventsNC = CustomNavigationController(rootViewController: vc)
         return eventsNC
     }
     

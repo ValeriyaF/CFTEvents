@@ -42,7 +42,14 @@ class EventsPresenter: IEventsPresenter {
             DataToShare(id: eventsList[index].id, title: eventsList[index].title))
     }
     
-    private func getEvents() {
+}
+
+private extension EventsPresenter {
+    func initEventsList(with data: EventsApiResponse) {
+        self.eventsList = data?.compactMap { EventCellModel(event: $0) } ?? []
+    }
+    
+    func getEvents() {
         view?.startLoad()
         model.getData() { [weak self] data in
             if let data = data {
@@ -52,14 +59,5 @@ class EventsPresenter: IEventsPresenter {
                 self?.view?.setEvents()
             }
         }
-    }
-}
-
-private extension EventsPresenter {
-    func initEventsList(with data: EventsApiResponse) {
-//        let newData = data?.compactMap { elenent in
-//            EventCellModel(event: elenent)
-//        }
-        self.eventsList = data?.compactMap { EventCellModel(event: $0) } ?? []
     }
 }

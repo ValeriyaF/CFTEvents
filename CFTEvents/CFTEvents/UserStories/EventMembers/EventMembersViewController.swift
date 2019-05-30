@@ -35,6 +35,8 @@ class EventMembersViewController: UIViewController {
     
     var presenter: IEventMembersPresenter!
     
+    private let preferences = Preferences()
+    
     internal var dataToShare: DataToShare = DataToShare()
     private let cellReuseID = "EventMemberCell"
     
@@ -64,11 +66,26 @@ class EventMembersViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewInitiated(with: dataToShare)
+        subscribeOnThemeChange()
         configureView()
+    }
+    
+    private func applyTheme() {
+        tableView.backgroundView = nil
+        tableView.backgroundColor = preferences.selectedTheme.backgroundColor
+        tableView.separatorColor = preferences.selectedTheme.separatorColor
+    }
+    
+    private func subscribeOnThemeChange() {
+        NotificationCenter.default.addObserver(
+        forName: .preferencesChangeTheme, object: nil, queue: nil) { [weak self] _ in
+            self?.applyTheme()
+            self?.tableView.reloadData()
+        }
     }
     
     private func configureView() {
@@ -154,7 +171,7 @@ extension EventMembersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventMemberCell
-        cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row, isFiltered: isSearchActive))
+        cell.configureState(with: presenter.cellModel(forRowAt: indexPath.row, isFiltered: isSearchActive), theme: preferences.selectedTheme)
         cell.checkboxState = { state in
             self.presenter.checkboxStateChange(to: state, forRow: indexPath.row)
         }

@@ -2,7 +2,7 @@ import UIKit
 
 class EventsViewController: UIViewController {
     var presenter: IEventsPresenter!
-
+    
     private let tableView = UITableView(frame: .zero)
     private let activityIndicator = UIActivityIndicatorView(frame: .zero)
     
@@ -12,15 +12,37 @@ class EventsViewController: UIViewController {
         return refreshControl
     }()
     
+    private let preferences = Preferences()
     private let cellReuseID = "EventsCell"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeOnThemeChange()
         configureView()
+        applyTheme()
         presenter.updateEventsList()
     }
     
-    private func configureView() {
+}
+
+private extension EventsViewController {
+    
+    func applyTheme() {
+        tableView.backgroundView = nil
+        tableView.backgroundColor = preferences.selectedTheme.backgroundColor
+        tableView.separatorColor = preferences.selectedTheme.separatorColor
+    }
+    
+    func subscribeOnThemeChange() {
+        NotificationCenter.default.addObserver(
+        forName: .preferencesChangeTheme, object: nil, queue: nil) { [weak self] _ in
+            self?.applyTheme()
+            self?.tableView.reloadData()
+        }
+        
+    }
+    
+    func configureView() {
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
         
@@ -29,7 +51,7 @@ class EventsViewController: UIViewController {
         configureActivityIndicator()
     }
     
-    private func configureTableView() {
+    func configureTableView() {
         tableView.register(EventCell.self, forCellReuseIdentifier: cellReuseID)
         
         tableView.dataSource = self
@@ -43,13 +65,14 @@ class EventsViewController: UIViewController {
         tableView.refreshControl = refreshControl
     }
     
-    private func configureNavigationBarItem() {
+    func configureNavigationBarItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = NavBarItems.eventsTitle.rawValue // localize
         self.title = NavBarItems.eventsTitle.rawValue
+        
     }
     
-    private func configureActivityIndicator() {
+    func configureActivityIndicator() {
         activityIndicator.snp.makeConstraints { make -> Void in
             make.bottom.top.equalTo(tableView)
             make.height.equalTo(tableView)
@@ -60,11 +83,10 @@ class EventsViewController: UIViewController {
         activityIndicator.color = .red
     }
     
-    @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+    @objc  func handleRefresh(_ refreshControl: UIRefreshControl) {
         presenter.updateEventsList()
     }
 }
-
 extension EventsViewController: IEventsView {
     func startLoad() {
         activityIndicator.startAnimating()
@@ -75,6 +97,7 @@ extension EventsViewController: IEventsView {
         tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
         activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
     
     func pushToEventMembersViewController(withSharedData data: DataToShare) {
@@ -88,10 +111,10 @@ extension EventsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.numberOfRows()
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID, for: indexPath) as! EventCell
-        cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row))
+        cell.configureLabels(with: presenter.cellModel(forRowAt: indexPath.row), theme: preferences.selectedTheme)
         cell.configureImage(with: presenter.cellImage(forRowAt: indexPath.row))
         return cell
     }
@@ -99,17 +122,13 @@ extension EventsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ViewConstants.eventsTableViewHeightForRow
     }
-
+    
 }
 
 extension EventsViewController: UITableViewDelegate {
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         presenter.didSelectedTableViewCell(index: indexPath.row)
-        // right way to push data ???
-//        let vc = EventMembersViewController()
-//        vc.dataToShare = presenter.dataToShare(forRowAt: indexPath.row)
-//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

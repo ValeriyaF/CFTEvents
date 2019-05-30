@@ -19,7 +19,6 @@ class EventMembersService {
         let data = ConfirmationApiResponse(id: memderId, isVisited: memberState, visitedDate: getCurrentDate())
  
            let httpBody = try! JSONEncoder().encode([data])
-
         
         guard let url = URL(string: "https://team.cft.ru/api/v1/registration/members/event/\(eventId)/confirmation?token=\(AppConfig.testToken)") else {
             print("url error")
@@ -33,10 +32,6 @@ class EventMembersService {
         
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            
             DispatchQueue.global(qos: .userInteractive).async {
                 completion(error)
             }
@@ -44,37 +39,17 @@ class EventMembersService {
         
     }
     
-    func testLoadML() {
-        networkManager?.getMembers(forEvent: 106, completion: { (data, error) in
-            print(data)
-            print(error)
-        })
-    }
-    
     func loadMembersList(withEventId id: Int, completion: @escaping (_ data: EventMembersApiResponse) -> ()) {
-        
-        var loadedData: EventMembersApiResponse?
-        let url = URL(string: "https://team.cft.ru/api/v1/registration/members/event/\(id)?token=\(AppConfig.testToken)")!
-        
-        let dataTask = URLSession.shared.dataTask(with: url) { (data, responseURL, error) in
-            if let error = error {
-                print("responseURL = \(error.localizedDescription)")
-                return
-            }
+        networkManager?.getMembers(forEvent: id, completion: { [weak self] data, error in
             if let data = data {
-                do {
-                    loadedData = try JSONDecoder().decode(EventMembersApiResponse.self, from: data)
-                } catch let err {
-                    print("Err", err)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    completion(data)
                 }
+            } else {
+                print(error)
             }
-            
-            DispatchQueue.global(qos: .userInteractive).async {
-                completion(loadedData!)
-            }
-        }
-        
-        dataTask.resume()
+
+        })
     }
     
     private func getCurrentDate() -> String {

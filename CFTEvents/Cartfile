@@ -1,3 +1,4 @@
 github "SnapKit/SnapKit" ~> 5.0.0
 github "Marxon13/M13Checkbox"
 github "SDWebImage/SDWebImage"
+github "radex/SwiftyUserDefaults" ~> 4.0

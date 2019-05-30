@@ -64,13 +64,10 @@ struct NetworkManager {
                         return
                     }
                     do {
-                        print(responseData)
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                        print(jsonData)
                         let apiResponse = try JSONDecoder().decode(EventMembersApiResponse.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
-                        print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let networkFailureError):

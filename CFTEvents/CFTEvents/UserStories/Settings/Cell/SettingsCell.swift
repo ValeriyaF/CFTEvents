@@ -10,8 +10,12 @@ class SettingsCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
 
-    func configureCell(with name: String) {
+    func configureCell(with name: String, theme: Theme) {
         self.textLabel?.text = name
+        self.textLabel?.font = UIFont(name: ((self.textLabel?.font.fontName)!), size: DynamicFontSize.convertTextSize(30))
+        
+        self.backgroundColor = theme.settingsCellBackgroundColor
+        self.textLabel?.textColor = theme.settingsCellTextColor
     }
     
 }

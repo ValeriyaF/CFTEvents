@@ -28,7 +28,6 @@ class EventMembersPresenter: IEventMembersPresenter {
     
     func viewInitiated(with dataToShare: DataToShare) {
         
-        model.testLoadML()
         if AppConfig.isDebug {
             self.eventId = 106
         } else {
@@ -36,7 +35,7 @@ class EventMembersPresenter: IEventMembersPresenter {
         }
         
         self.eventTitle = dataToShare.eventTitle
-
+        
         getMembersList()
     }
     
@@ -50,7 +49,7 @@ class EventMembersPresenter: IEventMembersPresenter {
     
     func cellModel(forRowAt index: Int, isFiltered: Bool) -> MemberInformation {
         if isFiltered {
-           return MemberInformation(lastName: filteredMembersList[index].lastName, firstName: filteredMembersList[index].firstName, isVisited: filteredMembersList[index].isVisited)
+            return MemberInformation(lastName: filteredMembersList[index].lastName, firstName: filteredMembersList[index].firstName, isVisited: filteredMembersList[index].isVisited)
         } else {
             return MemberInformation(lastName: membersList[index].lastName, firstName: membersList[index].firstName, isVisited: membersList[index].isVisited)
         }
@@ -74,13 +73,13 @@ class EventMembersPresenter: IEventMembersPresenter {
                 }
             }
         } else {
-            view?.showAlert(withMsg: "You can't change the status of an already visited member", title: "Sorry") //add enum with msgs
+            view?.showAlert(withMsg: "You can't change the status of an already visited member", title: "Sorry")
             view?.returnActualCheckboxState(forCell: index)
         }
     }
     
     func setPopupViewModel(forRowAt index: Int) -> PopupViewModel {
-        return PopupViewModel(model: membersList[index]) 
+        return PopupViewModel(model: membersList[index])
     }
     
     func searchBarFilter(textDidChange searchText: String?, scope: SearchScope) {
@@ -108,11 +107,10 @@ class EventMembersPresenter: IEventMembersPresenter {
     private func getMembersList() {
         model.loadMembersList(withEventId: eventId ?? 0) { [weak self] (data) in
             self?.membersList = data?.compactMap { EventMemberCellModel(member: $0) } ?? []
-//            self?.filteredMembersList = self?.membersList ?? []
             DispatchQueue.main.async {
                 self?.view?.setMembers()
             }
         }
     }
-
+    
 }
