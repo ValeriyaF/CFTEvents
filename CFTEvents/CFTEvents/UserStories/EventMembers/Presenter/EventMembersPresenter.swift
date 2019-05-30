@@ -84,17 +84,24 @@ class EventMembersPresenter: IEventMembersPresenter {
     
     func searchBarFilter(textDidChange searchText: String?, scope: SearchScope) {
         filteredMembersList = membersList.filter { member -> Bool in
+            let firstNameContainSearchText: Bool = member.firstName.lowercased().contains((searchText ?? "").lowercased())
+            let lastNameContainSearchText: Bool = member.lastName.lowercased().contains((searchText ?? "").lowercased())
+            let patronymicContainSearchText: Bool = member.patronymic.lowercased().contains((searchText ?? "").lowercased())
             switch scope {
+            case .all:
+                if (firstNameContainSearchText || lastNameContainSearchText || patronymicContainSearchText) || (searchText == ""){
+                    return true
+                } else {
+                    return false
+                }
             case .visited:
-                if ((member.firstName.lowercased().contains((searchText ?? "").lowercased()) ||
-                    member.lastName.lowercased().contains((searchText ?? "").lowercased())) && member.isVisited) || (searchText == "" && member.isVisited) {
+                if (firstNameContainSearchText || lastNameContainSearchText || patronymicContainSearchText) || (searchText == "" && member.isVisited) {
                     return true
                 } else {
                     return false
                 }
             case .notVisited:
-                if ((member.firstName.lowercased().contains((searchText ?? "").lowercased()) ||
-                    member.lastName.lowercased().contains((searchText ?? "").lowercased())) && !member.isVisited) || (searchText == "" && !member.isVisited) {
+                if (firstNameContainSearchText || lastNameContainSearchText || patronymicContainSearchText) || (searchText == "" && !member.isVisited) {
                     return true
                 } else {
                     return false

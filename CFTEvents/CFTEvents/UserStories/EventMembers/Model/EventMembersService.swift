@@ -15,7 +15,7 @@ class EventMembersService {
         self.networkManager = networkManager
     }
     
-    func confirmMembersVisit(withEventId eventId: Int, memderId memderId: Int, memberState memberState: Bool, completion: @escaping (_ error: Error?) -> ()) {
+    func confirmMembersVisit(withEventId eventId: Int, memderId: Int,  memberState: Bool, completion: @escaping (_ error: Error?) -> ()) {
         let data = ConfirmationApiResponse(id: memderId, isVisited: memberState, visitedDate: getCurrentDate())
  
            let httpBody = try! JSONEncoder().encode([data])

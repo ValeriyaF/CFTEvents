@@ -7,7 +7,7 @@ class Router<EndPoint: EndPointType> {
     
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         do {
-            var request = try self.buildRequest(from: route)
+            let request = try self.buildRequest(from: route)
             dataTask = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 DispatchQueue.global(qos: .userInteractive).async {
                     completion(data, response, error)

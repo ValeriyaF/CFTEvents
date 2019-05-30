@@ -55,6 +55,19 @@ extension Theme {
     }
 }
 
+// search bar
+
+extension Theme {
+    var segmentedControlColor: UIColor {
+        switch self {
+        case .light:
+            return .colorFromHexString("ffffff")
+        case .dark:
+            return .colorFromHexString("5bb3ff")
+        }
+    }
+}
+
 // navigation bar 
 extension Theme {
     var navigationBarBarTintColor: UIColor {

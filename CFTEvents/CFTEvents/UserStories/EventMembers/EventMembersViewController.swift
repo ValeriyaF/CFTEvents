@@ -2,6 +2,7 @@ import UIKit
 
 
 enum SearchScope: Int {
+    case all
     case visited
     case notVisited
 }
@@ -9,10 +10,13 @@ enum SearchScope: Int {
 fileprivate extension SearchScope {
     var title: String {
         switch self {
+        case .all:
+            return "All"
         case .visited:
             return "Visited"
         case .notVisited:
             return "Not visited"
+        
         }
     }
 }
@@ -39,6 +43,7 @@ class EventMembersViewController: UIViewController {
     
     internal var dataToShare: DataToShare = DataToShare()
     private let cellReuseID = "EventMemberCell"
+    
     
     private let tableView = UITableView(frame: .zero)
     private let blurEffectView = UIVisualEffectView(effect: nil)
@@ -79,6 +84,7 @@ class EventMembersViewController: UIViewController {
         tableView.backgroundView = nil
         tableView.backgroundColor = preferences.selectedTheme.backgroundColor
         tableView.separatorColor = preferences.selectedTheme.separatorColor
+        searchController.searchBar.tintColor = preferences.selectedTheme.segmentedControlColor
     }
     
     private func subscribeOnThemeChange() {
@@ -117,7 +123,7 @@ class EventMembersViewController: UIViewController {
     }
     
     private func configureSearchController() {
-        searchController.searchBar.scopeButtonTitles = [SearchScope.visited.title, SearchScope.notVisited.title]
+        searchController.searchBar.scopeButtonTitles = [SearchScope.all.title, SearchScope.visited.title, SearchScope.notVisited.title]
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
